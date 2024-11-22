@@ -1,0 +1,27 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="ThrowablePrintStackTrace" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="Tests" level="WARNING" enabled="false" />
+    </inspection_tool>
+    <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="groups">
+        <value>
+          <list size="11">
+            <item index="0" class="java.lang.String" itemvalue="homePageSetup" />
+            <item index="1" class="java.lang.String" itemvalue="plpTests" />
+            <item index="2" class="java.lang.String" itemvalue="post-checkout" />
+            <item index="3" class="java.lang.String" itemvalue="checkout-details" />
+            <item index="4" class="java.lang.String" itemvalue="checkout" />
+            <item index="5" class="java.lang.String" itemvalue="pre-checkout" />
+            <item index="6" class="java.lang.String" itemvalue="productListPageSetup" />
+            <item index="7" class="java.lang.String" itemvalue="login" />
+            <item index="8" class="java.lang.String" itemvalue="homePage" />
+            <item index="9" class="java.lang.String" itemvalue="accountLogin" />
+            <item index="10" class="java.lang.String" itemvalue="homePageTests" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
