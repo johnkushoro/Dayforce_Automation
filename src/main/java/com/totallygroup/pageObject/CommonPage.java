@@ -1,51 +1,3 @@
-//
-//package com.totallygroup.pageObject;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.JavascriptExecutor;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
-//
-//import java.time.Duration;
-//import java.util.List;
-//
-//@Component
-//public class CommonPage {
-//
-//    protected final WebDriver driver;
-//    protected final WebDriverWait wait;
-//    private static final Duration PAGE_LOAD_TIMEOUT = Duration.ofSeconds(40);
-//
-//    @Autowired
-//    public CommonPage(WebDriver driver) {
-//        this.driver = driver;
-//        this.wait = new WebDriverWait(driver, PAGE_LOAD_TIMEOUT);
-//    }
-//
-//    public void scrollToElement(WebElement element) {
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].scrollIntoView(true);", element);
-//    }
-//
-//    public WebElement waitForElementToBeVisible(By locator) {
-//        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-//    }
-//
-//    public List<WebElement> waitForElementsToBeVisible(By locator) {
-//        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-//    }
-//
-//    public WebElement waitForElementToBeClickable(By locator) {
-//        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-//    }
-//}
-
-
-
 
 package com.totallygroup.pageObject;
 
@@ -56,51 +8,96 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class CommonPage {
 
     protected final WebDriver driver;
-    protected final WebDriverWait wait;
-    private static final Duration PAGE_LOAD_TIMEOUT = Duration.ofSeconds(15);
+    protected WebDriverWait wait;
+
+    @Value("${page.load.timeout:10}")
+    protected long timeoutInSeconds;
 
     @Autowired
     public CommonPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, PAGE_LOAD_TIMEOUT);
+        this.driver = Objects.requireNonNull(driver, "WebDriver cannot be null");
+    }
+
+    @PostConstruct
+    private void initialize() {
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+      //  logger.info("Page load timeout set to: " + timeoutInSeconds + " seconds.");
+    }
+
+    public void waitForPageLoad() {
+        try {
+            wait.until(
+                    webDriver -> Objects.equals(
+                            ((JavascriptExecutor) webDriver).executeScript("return document.readyState"),
+                            "complete"
+                    )
+            );
+        } catch (Exception e) {
+            throw new RuntimeException("Page did not load within " + timeoutInSeconds + " seconds.", e);
+        }
+    }
+
+    public void waitForElementToDisappear(By locator) {
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            throw new RuntimeException("Element did not disappear: " + locator, e);
+        }
     }
 
     public void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        try {
+            Objects.requireNonNull(element, "Element to scroll to cannot be null");
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to scroll to element.", e);
+        }
     }
 
     public WebElement waitForElementToBeVisible(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            throw new RuntimeException("Element not visible: " + locator, e);
+        }
     }
 
     public List<WebElement> waitForElementsToBeVisible(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        try {
+            return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        } catch (Exception e) {
+            throw new RuntimeException("Elements not visible: " + locator, e);
+        }
     }
-
 
     public WebElement waitForElementToBeClickable(By locator) {
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+        try {
+            return wait.until(ExpectedConditions.elementToBeClickable(locator));
+        } catch (Exception e) {
+            throw new RuntimeException("Element not clickable: " + locator, e);
+        }
     }
-
 
     public WebElement waitForElementToBeVisibleAndClickable(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+            return element;
+        } catch (Exception e) {
+            throw new RuntimeException("Element not visible and clickable: " + locator, e);
+        }
     }
-
-    public List<WebElement> waitForElementsToBeVisibleAndClickable(By locator) {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-    }
-
 }

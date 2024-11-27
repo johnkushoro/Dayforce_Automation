@@ -16,20 +16,20 @@ public class SideMenuItems extends CommonPage {
     }
 
     public void selectMenuItem(String itemText, String subItemText, String thirdSubItemText) {
-        String itemXpath = String.format(SIDE_MENU_ITEM_XPATH, itemText);
-        WebElement menuItem = waitForElementToBeVisible(By.xpath(itemXpath));
-        menuItem.click();
+        selectItem(itemText);
 
         if (subItemText != null && !subItemText.isEmpty()) {
-            String subItemXpath = String.format(SIDE_MENU_ITEM_XPATH, subItemText);
-            WebElement subMenuItem = waitForElementToBeVisible(By.xpath(subItemXpath));
-            subMenuItem.click();
+            selectItem(subItemText);
         }
 
         if (thirdSubItemText != null && !thirdSubItemText.isEmpty()) {
-            String thirdSubItemXpath = String.format(SIDE_MENU_ITEM_XPATH, thirdSubItemText);
-            WebElement thirdSubMenuItem = waitForElementToBeVisible(By.xpath(thirdSubItemXpath));
-            thirdSubMenuItem.click();
+            selectItem(thirdSubItemText);
         }
+    }
+
+    private void selectItem(String itemText) {
+        String itemXpath = String.format(SIDE_MENU_ITEM_XPATH, itemText);
+        WebElement menuItem = waitForElementToBeVisible(By.xpath(itemXpath));
+        menuItem.click();
     }
 }

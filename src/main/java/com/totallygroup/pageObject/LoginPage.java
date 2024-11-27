@@ -20,6 +20,7 @@ public class LoginPage extends CommonPage {
     public static final String NEXT_BUTTON_TEXT_XPATH = "//span[@id='evrDialog-button_label' and text()='%s']";
     public static final String DAYFORCE_NEWS_OK_BUTTON_XPATH = "//button[@aria-label='OK']";
     public static final String TOTALLY_LOGO_XPATH = "//span[@class='LogoToolbar']//img[@class='Logo']";
+    public static final String DAYFORCE_LOGIN_TITLE = "#dayforce_Dialog_1_title.dijitDialogTitle.dialogTitle";
 
 
     public LoginPage(WebDriver driver) {
@@ -72,4 +73,5 @@ public class LoginPage extends CommonPage {
     public boolean isTotallyLogoDisplayed() {
         return waitForElementToBeVisible(By.xpath(TOTALLY_LOGO_XPATH)).isDisplayed();
     }
+
 }

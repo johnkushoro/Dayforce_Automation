@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginPageTests extends BaseTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginPageTests.class);
 
     @Autowired
     private LoginPage loginPage;
@@ -25,20 +29,26 @@ public class LoginPageTests extends BaseTest {
     }
 
     @Test(dataProvider = "loginDataProvider")
-    public void accountLoginPageTest(String companyName, String username, String password) {
+    public void testAccountLogin(String companyName, String username, String password) {
+        logger.info("Starting login test with companyName: {}, username: {}", companyName, username);
 
         loginPage.enterLoginCredentials(companyName, username, password);
+        loginPage.clickLoginButton();
     }
 
     @Test
-    public void navigateToAuthenticationPageTest() {
-        loginPage.clickLoginButton();
+    public void testNavigateToHomePage() {
+        logger.info("Starting navigation to home page");
+
         loginPage.clickCookieButton("Accept All Cookies");
         loginPage.clickSkipButton();
         loginPage.selectRoleRadioButtonByText("Client Administrator No MFA");
         loginPage.clickRolePageNextButton("Next");
-        loginPage.clickDayforceNewsOkButton();
-        Assert.assertTrue(loginPage.isTotallyLogoDisplayed());
+       // loginPage.clickDayforceNewsOkButton();
 
+        boolean isLogoDisplayed = loginPage.isTotallyLogoDisplayed();
+        Assert.assertTrue(isLogoDisplayed, "The Totally logo was not displayed on the home page.");
+
+        logger.info("Navigation to home page completed successfully.");
     }
 }

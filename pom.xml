@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -27,7 +27,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Log4j API and Core (matching versions) -->
+        <!-- Log4j API and Core (Log4j 2.x) -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -39,7 +39,7 @@
             <version>2.20.0</version>
         </dependency>
 
-        <!-- SLF4J to Log4j 2 Bridge -->
+        <!-- SLF4J to Log4j 2 Bridge (to use SLF4J with Log4j 2.x) -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -111,7 +111,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>11</release> <!-- Use the release flag for JDK 11 compatibility -->
+                    <release>11</release>
+                    <source>16</source>
+                    <target>16</target> <!-- Use the release flag for JDK 11 compatibility -->
                 </configuration>
             </plugin>
 
