@@ -22,7 +22,7 @@ public class CommonPage {
     protected final WebDriver driver;
     protected WebDriverWait wait;
 
-    @Value("${page.load.timeout:10}")
+    @Value("${page.load.timeout:20}")
     protected long timeoutInSeconds;
 
     @Autowired
@@ -100,4 +100,18 @@ public class CommonPage {
             throw new RuntimeException("Element not visible and clickable: " + locator, e);
         }
     }
+
+    public void waitForElementsToNotBeVisible(By locator) {
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            throw new RuntimeException("Elements not visible: " + locator, e);
+        }
+    }
+
+    public void click (By locator){
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
+    }
+
 }
