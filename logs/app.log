@@ -895,3 +895,22 @@
 2024-11-30T21:19:10,532 [main] INFO  TimeScheduleTests - Starting testAssignShiftToEmployees...
 2024-11-30T21:19:16,222 [main] INFO  TimeScheduleTests - testAssignShiftToEmployees completed.
 2024-11-30T21:19:17,313 [main] INFO  TestRunner - Cleaning up TestRunner environment.
+2024-11-30T21:25:39,650 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T21:25:40,096 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T21:25:40,123 [main] INFO  TestRunner - Running tests...
+2024-11-30T21:25:40,443 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@54dcbb9f, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@74fef3f7, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@2a037324, org.springframework.test.context.support.DirtiesContextTestExecutionListener@69eb86b4, org.springframework.test.context.event.EventPublishingTestExecutionListener@585ac855]
+2024-11-30T21:25:40,507 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6d467c87, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@29182679, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@57bd802b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5cbb84b1, org.springframework.test.context.event.EventPublishingTestExecutionListener@2c779e5]
+2024-11-30T21:25:40,517 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@61d01788, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2b9b7f1f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@264c5d07, org.springframework.test.context.support.DirtiesContextTestExecutionListener@847f3e7, org.springframework.test.context.event.EventPublishingTestExecutionListener@69cac930]
+2024-11-30T21:25:40,561 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T21:25:41,930 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T21:25:41,966 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T21:25:46,423 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T21:25:51,540 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T21:26:06,800 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T21:26:26,345 [main] INFO  TimeScheduleTests - Starting testAssignShiftToEmployees...
+2024-11-30T21:26:30,394 [main] INFO  TimeScheduleTests - testAssignShiftToEmployees completed.
+2024-11-30T21:26:31,698 [main] INFO  TestRunner - Cleaning up TestRunner environment.

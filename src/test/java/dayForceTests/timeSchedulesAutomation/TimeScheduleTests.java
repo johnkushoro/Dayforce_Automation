@@ -45,12 +45,9 @@ public class TimeScheduleTests extends BaseTest {
 
     @Test
     public void verifyDayOfWeekMatchesTitle() {
-        logger.info("Starting testAssignShiftToEmployees...");
-
         timeSchedulePage.testSelectAvailableDayForEmployee();
         timeSchedulePage.verifyDayOfWeekMatchesTitle();
 
-        logger.info("testAssignShiftToEmployees completed.");
     }
 
 
