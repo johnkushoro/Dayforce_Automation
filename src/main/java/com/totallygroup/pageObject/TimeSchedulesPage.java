@@ -36,7 +36,6 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
 
 
-
     private final DataStore dataStore;
 
     public TimeSchedulesPage(WebDriver driver, DataStore dataStore) {
@@ -129,6 +128,16 @@ public class TimeSchedulesPage extends CommonPage {
         }
 
         logger.info("Selected Employee: " + selectedEmployee.getText());
+
+        // Click on the selected employee first
+        try {
+            selectedEmployee.click();
+            logger.info("Clicked on employee: " + selectedEmployee.getText());
+        } catch (ElementClickInterceptedException e) {
+            clickElementUsingJavaScript(selectedEmployee);
+            logger.info("Employee clicked using JavaScript: " + selectedEmployee.getText());
+        }
+
         List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
         for (WebElement day : daysOfWeek) {
             logger.info("Processing day: " + day.getText());
@@ -157,6 +166,7 @@ public class TimeSchedulesPage extends CommonPage {
 
         logger.info("No empty cell found for the selected employee.");
     }
+
     private WebElement getTargetCell(WebElement day) {
         WebElement emptyCell = waitForElementToBeVisible(By.cssSelector(EMPTY_CELL_CSS));
         return (emptyCell != null) ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_VIRTUAL_BACKGROUND_CSS));
@@ -165,6 +175,7 @@ public class TimeSchedulesPage extends CommonPage {
     private void clickOnAddScheduleMenu() {
         waitForElementToBeVisibleAndClickable(By.xpath(String.format(SHIFT_MENU_ITEM_XPATH, "Add Schedule"))).click();
     }
+
 
 
     public void verifyDayOfWeekMatchesTitle() {
