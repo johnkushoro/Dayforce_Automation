@@ -1,5 +1,4 @@
 
-
 package dayForceTests.timeSchedulesAutomation;
 
 import com.totallygroup.pageObject.SideMenuItems;
@@ -42,6 +41,7 @@ public class TimeScheduleTests extends BaseTest {
 //        assertEquals(timeSchedulePage.getLoadedPageTitle().trim(), ((String) dataStore.getValue("selectedOrganisation")).trim(),
 //                "Loaded organisation title does not match the selected organisation.");
         timeSchedulePage.testSelectAvailableDayForEmployee();
+        timeSchedulePage.verifyDayOfWeekMatchesTitle();
     }
 
 

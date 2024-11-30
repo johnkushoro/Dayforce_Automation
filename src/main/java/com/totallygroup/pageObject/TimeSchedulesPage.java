@@ -4,6 +4,7 @@ package com.totallygroup.pageObject;
 import com.totallygroup.utils.DataStore;
 import org.openqa.selenium.*;
 import org.springframework.stereotype.Component;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -114,6 +115,7 @@ public class TimeSchedulesPage extends CommonPage {
         return pageTitleText;
     }
 
+
     public void testSelectAvailableDayForEmployee() {
         List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
         WebElement selectedEmployee = employees.stream()
@@ -128,11 +130,11 @@ public class TimeSchedulesPage extends CommonPage {
 
         logger.info("Selected Employee: " + selectedEmployee.getText());
         List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
-        boolean foundEmptyCell = daysOfWeek.stream().anyMatch(day -> {
+        for (WebElement day : daysOfWeek) {
             logger.info("Processing day: " + day.getText());
             if (waitForElementsToBeVisible(By.cssSelector(FILLED_CELL_CSS)).contains(day)) {
                 logger.info("Day " + day.getText() + " is filled. Skipping.");
-                return false;
+                continue;
             }
 
             WebElement targetCell = getTargetCell(day);
@@ -140,24 +142,21 @@ public class TimeSchedulesPage extends CommonPage {
                 try {
                     targetCell.click();
                     logger.info("Cell clicked for employee: " + selectedEmployee.getText());
+                    dataStore.setValue("selectedDay", day.getText());
                     clickOnAddScheduleMenu();
-                    return true;
+                    return;
                 } catch (ElementClickInterceptedException e) {
                     clickElementUsingJavaScript(targetCell);
                     logger.info("Cell clicked using JavaScript for employee: " + selectedEmployee.getText());
+                    dataStore.setValue("selectedDay", day.getText());
                     clickOnAddScheduleMenu();
-                    return true;
+                    return;
                 }
             }
-            return false;
-        });
-
-        if (!foundEmptyCell) {
-            logger.info("No empty cell found for the selected employee. Trying another employee.");
-            testSelectAvailableDayForEmployee();
         }
-    }
 
+        logger.info("No empty cell found for the selected employee.");
+    }
     private WebElement getTargetCell(WebElement day) {
         WebElement emptyCell = waitForElementToBeVisible(By.cssSelector(EMPTY_CELL_CSS));
         return (emptyCell != null) ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_VIRTUAL_BACKGROUND_CSS));
@@ -167,4 +166,24 @@ public class TimeSchedulesPage extends CommonPage {
         waitForElementToBeVisibleAndClickable(By.xpath(String.format(SHIFT_MENU_ITEM_XPATH, "Add Schedule"))).click();
     }
 
+
+
+    public void verifyDayOfWeekMatchesTitle() {
+        String selectedDay = (String) dataStore.getValue("selectedDay");
+        if (selectedDay == null || selectedDay.isEmpty()) {
+            throw new AssertionError("No day selected for verification.");
+        }
+
+        String formattedDay = selectedDay.split(", ")[1];
+
+        WebElement titleElement = waitForElementToBeVisible(By.cssSelector("#scheduleSegmentEditor_title"));
+        String titleText = titleElement.getText();
+
+        String formattedTitleDate = titleText.split("-")[1].trim().split(" ")[0] + " " + titleText.split("-")[1].trim().split(" ")[1];
+
+        Assert.assertEquals(formattedDay, formattedTitleDate, "Day of week does not match title date.");
+        logger.info("Day " + formattedDay + " matches the title date: " + formattedTitleDate);
     }
+
+
+}

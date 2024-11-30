@@ -153,3 +153,104 @@
 2024-11-30T01:21:37,808 [main] INFO  LoginPageTests - Starting navigation to home page
 2024-11-30T01:21:46,511 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
 2024-11-30T01:22:05,657 [main] INFO  TestRunner - Cleaning up TestRunner environment.
+2024-11-30T02:03:30,286 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T02:03:30,803 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T02:03:30,825 [main] INFO  TestRunner - Running tests...
+2024-11-30T02:03:31,042 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2bf94401, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2532b351, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4349754, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6a2eea2a, org.springframework.test.context.event.EventPublishingTestExecutionListener@b967222]
+2024-11-30T02:03:31,123 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@205b132e, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@73044cdf, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3cbcd8f3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@719843e5, org.springframework.test.context.event.EventPublishingTestExecutionListener@9a2ec9b]
+2024-11-30T02:03:31,156 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2ba33e2c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1f193686, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@31e72cbc, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5fad41be, org.springframework.test.context.event.EventPublishingTestExecutionListener@6dcd5639]
+2024-11-30T02:03:31,201 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T02:03:32,361 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T02:03:32,413 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T02:03:37,886 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T02:03:44,498 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T02:03:51,665 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T02:04:56,884 [main] INFO  TestRunner - Cleaning up TestRunner environment.
+2024-11-30T02:11:26,179 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T02:11:26,518 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T02:11:26,540 [main] INFO  TestRunner - Running tests...
+2024-11-30T02:11:26,788 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2bf94401, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2532b351, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4349754, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6a2eea2a, org.springframework.test.context.event.EventPublishingTestExecutionListener@b967222]
+2024-11-30T02:11:26,826 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@73044cdf, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3cbcd8f3, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@719843e5, org.springframework.test.context.support.DirtiesContextTestExecutionListener@9a2ec9b, org.springframework.test.context.event.EventPublishingTestExecutionListener@58112bc4]
+2024-11-30T02:11:26,842 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5fad41be, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6dcd5639, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3b36e000, org.springframework.test.context.support.DirtiesContextTestExecutionListener@333cb916, org.springframework.test.context.event.EventPublishingTestExecutionListener@629ae7e]
+2024-11-30T02:11:26,865 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T02:11:27,674 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T02:11:27,701 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T02:11:32,156 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T02:11:36,618 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T02:11:42,907 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T02:12:28,785 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T02:12:29,149 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T02:12:29,167 [main] INFO  TestRunner - Running tests...
+2024-11-30T02:12:29,340 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@74fef3f7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2a037324, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@69eb86b4, org.springframework.test.context.support.DirtiesContextTestExecutionListener@585ac855, org.springframework.test.context.event.EventPublishingTestExecutionListener@5bb8f9e2]
+2024-11-30T02:12:29,382 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@29182679, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@57bd802b, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5cbb84b1, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2c779e5, org.springframework.test.context.event.EventPublishingTestExecutionListener@6a84bc2a]
+2024-11-30T02:12:29,395 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@847f3e7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@69cac930, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@19593091, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5d39f2d8, org.springframework.test.context.event.EventPublishingTestExecutionListener@6ad6fa53]
+2024-11-30T02:12:29,418 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T02:12:30,286 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T02:12:30,309 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T02:12:34,090 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T02:12:37,477 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T02:12:44,625 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T02:13:00,749 [main] INFO  TestRunner - Cleaning up TestRunner environment.
+2024-11-30T02:14:04,425 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T02:14:04,768 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T02:14:04,809 [main] INFO  TestRunner - Running tests...
+2024-11-30T02:14:05,058 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2bf94401, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2532b351, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4349754, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6a2eea2a, org.springframework.test.context.event.EventPublishingTestExecutionListener@b967222]
+2024-11-30T02:14:05,093 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@719843e5, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@9a2ec9b, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@58112bc4, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2301b75, org.springframework.test.context.event.EventPublishingTestExecutionListener@3104f7bd]
+2024-11-30T02:14:05,105 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6dcd5639, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3b36e000, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@333cb916, org.springframework.test.context.support.DirtiesContextTestExecutionListener@629ae7e, org.springframework.test.context.event.EventPublishingTestExecutionListener@1d25c1c]
+2024-11-30T02:14:05,123 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T02:14:06,341 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T02:14:06,375 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T02:14:10,150 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T02:14:14,177 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T02:14:21,503 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T02:15:38,185 [main] INFO  TestRunner - Cleaning up TestRunner environment.
+2024-11-30T02:20:11,164 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T02:20:11,495 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T02:20:11,519 [main] INFO  TestRunner - Running tests...
+2024-11-30T02:20:11,763 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2bf94401, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2532b351, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4349754, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6a2eea2a, org.springframework.test.context.event.EventPublishingTestExecutionListener@b967222]
+2024-11-30T02:20:11,797 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@719843e5, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@9a2ec9b, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@58112bc4, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2301b75, org.springframework.test.context.event.EventPublishingTestExecutionListener@3104f7bd]
+2024-11-30T02:20:11,820 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6dcd5639, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3b36e000, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@333cb916, org.springframework.test.context.support.DirtiesContextTestExecutionListener@629ae7e, org.springframework.test.context.event.EventPublishingTestExecutionListener@1d25c1c]
+2024-11-30T02:20:11,841 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T02:20:12,781 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T02:20:12,820 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T02:20:17,424 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T02:20:23,346 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T02:20:30,984 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T02:21:01,232 [main] INFO  TestRunner - Cleaning up TestRunner environment.
+2024-11-30T02:21:28,016 [main] INFO  Utils - [TestNG] Running:
+  C:\Users\John.Kushoro\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+2024-11-30T02:21:28,308 [main] INFO  TestRunner - Setting up TestRunner environment.
+2024-11-30T02:21:28,334 [main] INFO  TestRunner - Running tests...
+2024-11-30T02:21:28,563 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@74fef3f7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2a037324, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@69eb86b4, org.springframework.test.context.support.DirtiesContextTestExecutionListener@585ac855, org.springframework.test.context.event.EventPublishingTestExecutionListener@5bb8f9e2]
+2024-11-30T02:21:28,610 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@57bd802b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5cbb84b1, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@2c779e5, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6a84bc2a, org.springframework.test.context.event.EventPublishingTestExecutionListener@5183d589]
+2024-11-30T02:21:28,626 [main] INFO  DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2b9b7f1f, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@264c5d07, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@847f3e7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@69cac930, org.springframework.test.context.event.EventPublishingTestExecutionListener@19593091]
+2024-11-30T02:21:28,645 [main] INFO  Utils - [TestNG] Running:
+  Command line suite
+
+2024-11-30T02:21:30,306 [main] INFO  WebDriverManager - Using chromedriver 127.0.6533.119 (resolved driver for Chrome 127)
+2024-11-30T02:21:30,338 [main] INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\John.Kushoro\.cache\selenium\chromedriver\win64\127.0.6533.119\chromedriver.exe
+2024-11-30T02:21:34,030 [main] INFO  LoginPageTests - Starting login test with companyName: totallygroupconfig, username: Test
+2024-11-30T02:21:37,491 [main] INFO  LoginPageTests - Starting navigation to home page
+2024-11-30T02:21:42,660 [main] INFO  LoginPageTests - Navigation to home page completed successfully.
+2024-11-30T02:21:58,938 [main] INFO  TestRunner - Cleaning up TestRunner environment.
