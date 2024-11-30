@@ -1,4 +1,3 @@
-
 package dayForceTests.timeSchedulesAutomation;
 
 import com.totallygroup.pageObject.SideMenuItems;
@@ -36,23 +35,23 @@ public class TimeScheduleTests extends BaseTest {
         assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS 999", "Shift assignment failed.");
     }
 
+//    @Test
+//    public void verifyOrganisationTitleMatchesSelectedOrganisation() {
+////        assertEquals(timeSchedulePage.getLoadedPageTitle().trim(), ((String) dataStore.getValue("selectedOrganisation")).trim(),
+////                "Loaded organisation title does not match the selected organisation.");
+//
+//}
+
+
     @Test
-    public void verifyOrganisationTitleMatchesSelectedOrganisation() {
-//        assertEquals(timeSchedulePage.getLoadedPageTitle().trim(), ((String) dataStore.getValue("selectedOrganisation")).trim(),
-//                "Loaded organisation title does not match the selected organisation.");
+    public void verifyDayOfWeekMatchesTitle() {
+        logger.info("Starting testAssignShiftToEmployees...");
+
         timeSchedulePage.testSelectAvailableDayForEmployee();
         timeSchedulePage.verifyDayOfWeekMatchesTitle();
+
+        logger.info("testAssignShiftToEmployees completed.");
     }
-
-
-//        @Test
-//        public void testAssignShiftToEmployees() {
-//            logger.info("Starting testAssignShiftToEmployees...");
-//            timeSchedulePage.testSelectAvailableDayForEmployee();
-//
-//
-//            logger.info("testAssignShiftToEmployees completed.");
-//        }
 
 
 }

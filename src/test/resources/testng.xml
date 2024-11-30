@@ -7,6 +7,7 @@
             <class name="dayForceTests.LoginPageTests"/>
             <class name="dayForceTests.HomePageTests"/>
             <class name="dayForceTests.timeSchedulesAutomation.TimeScheduleTests"/>
+<!--
 
             <!-- Add more test classes as needed -->
         </classes>

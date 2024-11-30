@@ -5,14 +5,8 @@
     <classes>
       <class name="dayForceTests.timeSchedulesAutomation.TimeScheduleTests">
         <methods>
-          <include name="springTestContextBeforeTestClass"/>
-          <include name="setUpOnceForSuite"/>
-          <include name="springTestContextBeforeTestMethod"/>
-          <include name="springTestContextPrepareTestInstance"/>
-          <include name="springTestContextAfterTestClass"/>
-          <include name="springTestContextAfterTestMethod"/>
-          <include name="tearDownAfterSuite"/>
-          <include name="verifyOrganisationTitleMatchesSelectedOrganisation"/>
+          <include name="verifyDayOfWeekMatchesTitle"/>
+          <include name="testLoadOrganisation"/>
         </methods>
       </class> <!-- dayForceTests.timeSchedulesAutomation.TimeScheduleTests -->
     </classes>

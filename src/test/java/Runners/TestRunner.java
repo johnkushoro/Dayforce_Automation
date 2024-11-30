@@ -36,7 +36,7 @@ public class TestRunner {
         testng.setTestClasses(new Class[] {
                 LoginPageTests.class,
                 HomePageTests.class,
-                TimeScheduleTests.class
+                TimeScheduleTests.class,
         });
 
         logger.info("Running tests...");

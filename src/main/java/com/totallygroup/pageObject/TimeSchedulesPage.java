@@ -167,7 +167,6 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
-
     public void verifyDayOfWeekMatchesTitle() {
         String selectedDay = (String) dataStore.getValue("selectedDay");
         if (selectedDay == null || selectedDay.isEmpty()) {
