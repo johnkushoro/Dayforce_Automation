@@ -36,7 +36,6 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
 
 
-
     private final DataStore dataStore;
 
     public TimeSchedulesPage(WebDriver driver, DataStore dataStore) {
@@ -117,49 +116,65 @@ public class TimeSchedulesPage extends CommonPage {
 
 
     public void testSelectAvailableDayForEmployee() {
-        List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
-        WebElement selectedEmployee = employees.stream()
-                .filter(e -> !e.findElement(By.className(EMPLOYEE_LABEL_CLASS)).getText().equals("[Unfilled]"))
-                .findFirst()
-                .orElse(null);
-
+        WebElement selectedEmployee = getSelectedEmployee();
         if (selectedEmployee == null) {
             logger.log(Level.WARNING, "No suitable employee found.");
             return;
         }
 
         logger.info("Selected Employee: " + selectedEmployee.getText());
+
+        clickElement(selectedEmployee);
+
         List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
         for (WebElement day : daysOfWeek) {
             logger.info("Processing day: " + day.getText());
-            if (waitForElementsToBeVisible(By.cssSelector(FILLED_CELL_CSS)).contains(day)) {
+            if (isDayFilled(day)) {
                 logger.info("Day " + day.getText() + " is filled. Skipping.");
                 continue;
             }
 
             WebElement targetCell = getTargetCell(day);
             if (targetCell != null) {
-                try {
-                    targetCell.click();
-                    logger.info("Cell clicked for employee: " + selectedEmployee.getText());
-                    dataStore.setValue("selectedDay", day.getText());
-                    clickOnAddScheduleMenu();
-                    return;
-                } catch (ElementClickInterceptedException e) {
-                    clickElementUsingJavaScript(targetCell);
-                    logger.info("Cell clicked using JavaScript for employee: " + selectedEmployee.getText());
-                    dataStore.setValue("selectedDay", day.getText());
-                    clickOnAddScheduleMenu();
-                    return;
-                }
+                clickElement(targetCell);
+                logger.info("Cell clicked for employee: " + selectedEmployee.getText());
+                dataStore.setValue("selectedDay", day.getText());
+                clickOnAddScheduleMenu();
+                return;
             }
         }
 
         logger.info("No empty cell found for the selected employee.");
     }
+
+    private WebElement getSelectedEmployee() {
+        List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
+        return employees.stream()
+                .filter(e -> !e.findElement(By.className(EMPLOYEE_LABEL_CLASS)).getText().equals("[Unfilled]"))
+                .findFirst()
+                .orElse(null);
+    }
+
+    private void clickElement(WebElement element) {
+        try {
+            element.click();
+            logger.info("Clicked on element: " + element.getText());
+        } catch (ElementClickInterceptedException e) {
+            clickElementUsingJavaScript(element);
+            logger.info("Element clicked using JavaScript: " + element.getText());
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Failed to click on element: " + element.getText(), e);
+        }
+    }
+
+    private boolean isDayFilled(WebElement day) {
+        List<WebElement> filledCells = waitForElementsToBeVisible(By.cssSelector(FILLED_CELL_CSS));
+        return filledCells.contains(day);
+    }
+
     private WebElement getTargetCell(WebElement day) {
         WebElement emptyCell = waitForElementToBeVisible(By.cssSelector(EMPTY_CELL_CSS));
-        return (emptyCell != null) ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_VIRTUAL_BACKGROUND_CSS));
+        return emptyCell != null ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_VIRTUAL_BACKGROUND_CSS));
     }
 
     private void clickOnAddScheduleMenu() {
