@@ -11,8 +11,8 @@
           <include name="springTestContextPrepareTestInstance"/>
           <include name="springTestContextAfterTestClass"/>
           <include name="springTestContextAfterTestMethod"/>
-          <include name="verifyOrganisationTitleMatchesSelectedOrganisation"/>
           <include name="tearDownAfterSuite"/>
+          <include name="verifyOrganisationTitleMatchesSelectedOrganisation"/>
         </methods>
       </class> <!-- dayForceTests.timeSchedulesAutomation.TimeScheduleTests -->
     </classes>

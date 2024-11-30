@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Command_line_suite" class="navigator-link">
-              <span class="suite-name border-failed">Command line suite</span>
+              <span class="suite-name border-passed">Command line suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,21 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">5 methods, 1 failed,   4 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Command_line_suite" class="hide-methods failed suite-Command_line_suite"> (hide)</a> <!-- hide-methods failed suite-Command_line_suite -->
-                      <a href="#" panel-name="suite-Command_line_suite" class="show-methods failed suite-Command_line_suite"> (show)</a> <!-- show-methods failed suite-Command_line_suite -->
-                    </span>
-                    <div class="method-list-content failed suite-Command_line_suite">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="dayForceTests.timeSchedulesAutomation.TimeScheduleTests" class="method navigator-link" hash-for-method="verifyOrganisationTitleMatchesSelectedOrganisation">verifyOrganisationTitleMatchesSelectedOrganisation</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Command_line_suite -->
+                    <span class="method-stats">5 methods,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -135,6 +121,11 @@
                         <a href="#" panel-name="suite-Command_line_suite" title="dayForceTests.LoginPageTests" class="method navigator-link" hash-for-method="testNavigateToHomePage">testNavigateToHomePage</a> <!-- method navigator-link -->
                       </span>
                       <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Command_line_suite" title="dayForceTests.timeSchedulesAutomation.TimeScheduleTests" class="method navigator-link" hash-for-method="verifyOrganisationTitleMatchesSelectedOrganisation">verifyOrganisationTitleMatchesSelectedOrganisation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                     </div> <!-- method-list-content passed suite-Command_line_suite -->
                   </li>
                 </ul>
@@ -147,43 +138,17 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Command_line_suite" class="panel Command_line_suite">
-          <div class="suite-Command_line_suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">dayForceTests.timeSchedulesAutomation.TimeScheduleTests</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="verifyOrganisationTitleMatchesSelectedOrganisation">
-                  </a> <!-- verifyOrganisationTitleMatchesSelectedOrganisation -->
-                  <span class="method-name">verifyOrganisationTitleMatchesSelectedOrganisation</span>
-                  <div class="stack-trace">java.lang.AssertionError: No available day was selected. expected [true] but found [false]
-	at com.totallygroup.pageObject.TimeSchedulesPage.testSelectAvailableDayForEmployee(TimeSchedulesPage.java:199)
-	at dayForceTests.timeSchedulesAutomation.TimeScheduleTests.verifyOrganisationTitleMatchesSelectedOrganisation(TimeScheduleTests.java:44)
-	at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.run(AbstractTestNGSpringContextTests.java:186)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at Runners.TestRunner.runTests(TestRunner.java:43)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-... Removed 49 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Command_line_suite-class-failed -->
           <div class="suite-Command_line_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">dayForceTests.timeSchedulesAutomation.TimeScheduleTests</span>
+              <span class="class-name">dayForceTests.HomePageTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoadOrganisation">
-                  </a> <!-- testLoadOrganisation -->
-                  <span class="method-name">testLoadOrganisation</span>
+                  <a name="testHamburgerToOpenSideMenu">
+                  </a> <!-- testHamburgerToOpenSideMenu -->
+                  <span class="method-name">testHamburgerToOpenSideMenu</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -214,14 +179,21 @@
           <div class="suite-Command_line_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">dayForceTests.HomePageTests</span>
+              <span class="class-name">dayForceTests.timeSchedulesAutomation.TimeScheduleTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testHamburgerToOpenSideMenu">
-                  </a> <!-- testHamburgerToOpenSideMenu -->
-                  <span class="method-name">testHamburgerToOpenSideMenu</span>
+                  <a name="testLoadOrganisation">
+                  </a> <!-- testLoadOrganisation -->
+                  <span class="method-name">testLoadOrganisation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verifyOrganisationTitleMatchesSelectedOrganisation">
+                  </a> <!-- verifyOrganisationTitleMatchesSelectedOrganisation -->
+                  <span class="method-name">verifyOrganisationTitleMatchesSelectedOrganisation</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -281,30 +253,30 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(5);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyOrganisationTitleMatchesSelectedOrganisation')
+data.setCell(0, 1, 'testLoadOrganisation')
 data.setCell(0, 2, 'dayForceTests.timeSchedulesAutomation.TimeScheduleTests')
-data.setCell(0, 3, 50308);
+data.setCell(0, 3, 14346);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testLoadOrganisation')
-data.setCell(1, 2, 'dayForceTests.timeSchedulesAutomation.TimeScheduleTests')
-data.setCell(1, 3, 13692);
+data.setCell(1, 1, 'testNavigateToHomePage')
+data.setCell(1, 2, 'dayForceTests.LoginPageTests')
+data.setCell(1, 3, 8704);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testNavigateToHomePage')
+data.setCell(2, 1, 'testAccountLogin')
 data.setCell(2, 2, 'dayForceTests.LoginPageTests')
-data.setCell(2, 3, 9096);
+data.setCell(2, 3, 4588);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'testAccountLogin')
-data.setCell(3, 2, 'dayForceTests.LoginPageTests')
-data.setCell(3, 3, 3896);
+data.setCell(3, 1, 'verifyOrganisationTitleMatchesSelectedOrganisation')
+data.setCell(3, 2, 'dayForceTests.timeSchedulesAutomation.TimeScheduleTests')
+data.setCell(3, 3, 3223);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'testHamburgerToOpenSideMenu')
 data.setCell(4, 2, 'dayForceTests.HomePageTests')
-data.setCell(4, 3, 2816);
+data.setCell(4, 3, 313);
 window.suiteTableData['Command_line_suite']= { tableData: data, tableDiv: 'times-div-Command_line_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 31 seconds</span>
               <div id="times-div-Command_line_suite">
               </div> <!-- times-div-Command_line_suite -->
             </div> <!-- times-div -->
@@ -323,14 +295,14 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">dayForceTests.timeSchedulesAutomation.TimeScheduleTests</span>
+              <span class="ignored-class-name">dayForceTests.HomePageTests</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">tearDownAfterSuite</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
             <div class="ignored-class-div">
-              <span class="ignored-class-name">dayForceTests.HomePageTests</span>
+              <span class="ignored-class-name">dayForceTests.timeSchedulesAutomation.TimeScheduleTests</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">tearDownAfterSuite</span>
                 <br/>
@@ -351,130 +323,128 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
                 <span class="method-name">springTestContextPrepareTestInstance</span>
-                <span class="method-start">6 ms</span>
+                <span class="method-start">4 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">springTestContextBeforeTestMethod(public void dayForceTests.LoginPageTests.testAccountLogin(java.lang.String,java.lang.String,java.lan...)</span>
-                <span class="method-start">4351 ms</span>
+                <span class="method-start">4779 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">setUpOnceForSuite</span>
-                <span class="method-start">4359 ms</span>
+                <span class="method-start">4782 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testAccountLogin(totallygroupconfig, Test, Dayforce2)</span>
-                <span class="method-start">6005 ms</span>
+                <span class="method-start">6479 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">springTestContextAfterTestMethod(public void dayForceTests.LoginPageTests.testAccountLogin(java.lang.String,java.lang.String,java.lan...)</span>
-                <span class="method-start">9911 ms</span>
+                <span class="method-start">11076 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">springTestContextBeforeTestMethod(public void dayForceTests.LoginPageTests.testNavigateToHomePage())</span>
-                <span class="method-start">9914 ms</span>
+                <span class="method-start">11080 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">setUpOnceForSuite</span>
-                <span class="method-start">9915 ms</span>
+                <span class="method-start">11080 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testNavigateToHomePage</span>
-                <span class="method-start">9915 ms</span>
+                <span class="method-start">11082 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">springTestContextAfterTestMethod(public void dayForceTests.LoginPageTests.testNavigateToHomePage())</span>
-                <span class="method-start">19013 ms</span>
+                <span class="method-start">19789 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">springTestContextAfterTestClass</span>
-                <span class="method-start">19018 ms</span>
+                <span class="method-start">19790 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">dayForceTests.HomePageTests</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">springTestContextBeforeTestClass</span>
-                <span class="method-start">19033 ms</span>
+                <span class="method-start">19792 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
                 <span class="method-name">springTestContextPrepareTestInstance</span>
-                <span class="method-start">19034 ms</span>
+                <span class="method-start">19793 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">springTestContextBeforeTestMethod(public void dayForceTests.HomePageTests.testHamburgerToOpenSideMenu())</span>
-                <span class="method-start">19038 ms</span>
+                <span class="method-start">19794 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testHamburgerToOpenSideMenu</span>
-                <span class="method-start">19039 ms</span>
+                <span class="method-start">19795 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method before">
                 <span class="method-name">setUpOnceForSuite</span>
-                <span class="method-start">19039 ms</span>
+                <span class="method-start">19795 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method after">
                 <span class="method-name">springTestContextAfterTestMethod(public void dayForceTests.HomePageTests.testHamburgerToOpenSideMenu())</span>
-                <span class="method-start">21857 ms</span>
+                <span class="method-start">20109 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">springTestContextAfterTestClass</span>
-                <span class="method-start">21869 ms</span>
+                <span class="method-start">20114 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">dayForceTests.timeSchedulesAutomation.TimeScheduleTests</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">springTestContextBeforeTestClass</span>
-                <span class="method-start">21875 ms</span>
+                <span class="method-start">20119 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
                 <span class="method-name">springTestContextPrepareTestInstance</span>
-                <span class="method-start">21882 ms</span>
+                <span class="method-start">20124 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">springTestContextBeforeTestMethod(public void dayForceTests.timeSchedulesAutomation.TimeScheduleTests.testLoadOrganisation() throws ja...)</span>
-                <span class="method-start">21917 ms</span>
+                <span class="method-start">20129 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">setUpOnceForSuite</span>
-                <span class="method-start">21923 ms</span>
+                <span class="method-start">20131 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoadOrganisation</span>
-                <span class="method-start">21924 ms</span>
+                <span class="method-start">20133 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">springTestContextAfterTestMethod(public void dayForceTests.timeSchedulesAutomation.TimeScheduleTests.testLoadOrganisation() throws ja...)</span>
-                <span class="method-start">35617 ms</span>
+                <span class="method-start">34480 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void dayForceTests.timeSchedulesAutomation.TimeScheduleTests.verifyOrganisationTitleMatchesSe...)</span>
+                <span class="method-start">34480 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
                 <span class="method-name">setUpOnceForSuite</span>
-                <span class="method-start">35619 ms</span>
+                <span class="method-start">34481 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">verifyOrganisationTitleMatchesSelectedOrganisation</span>
-                <span class="method-start">35619 ms</span>
+                <span class="method-start">34481 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method before">
-                <span class="method-name">springTestContextBeforeTestMethod(public void dayForceTests.timeSchedulesAutomation.TimeScheduleTests.verifyOrganisationTitleMatchesSe...)</span>
-                <span class="method-start">35619 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="configuration-method after">
                 <span class="method-name">springTestContextAfterTestMethod(public void dayForceTests.timeSchedulesAutomation.TimeScheduleTests.verifyOrganisationTitleMatchesSe...)</span>
-                <span class="method-start">86000 ms</span>
+                <span class="method-start">37704 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">springTestContextAfterTestClass</span>
-                <span class="method-start">86005 ms</span>
+                <span class="method-start">37708 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">dayForceTests.LoginPageTests</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDownAfterSuite</span>
-                <span class="method-start">86697 ms</span>
+                <span class="method-start">38123 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

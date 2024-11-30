@@ -3,12 +3,9 @@ package com.totallygroup.pageObject;
 
 import com.totallygroup.utils.DataStore;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.stereotype.Component;
-import org.testng.Assert;
 
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 
 import static com.totallygroup.utils.Config.logger;
@@ -27,6 +24,17 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String HIGHLIGHTED_ORGANISATION_CSS = ".dijitComboBoxHighlightMatch";
     public static final String HIGHLIGHTED_ORGANISATION_XPATH = "//div[@class='dijitReset dijitMenuItem']";
     //    public static final String ORGANISATION_BY_TEXT_XPATH = "//div[text()='%s']";
+
+
+    public static final String EMPLOYEE_LIST_CSS = ".VirtualEmployeeCell";
+    public static final String DAY_OF_WEEK_CSS = ".defaultHeaderCell .text";
+    public static final String FILLED_CELL_CSS = ".VirtualScheduleCell[style*='opacity: 0.5']";
+    public static final String CELL_WITH_VIRTUAL_BACKGROUND_CSS = ".VirtualBackgroundCell.SchedulerBackgroundCell.allDayTAFW";
+    public static final String SHIFT_MENU_ITEM_XPATH = "//td[@class='dijitReset dijitMenuItemLabel' and text()='%s']";
+    public static final String EMPTY_CELL_CSS = "div.SchedulerVirtualGridEditControls";
+    public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
+
+
 
     private final DataStore dataStore;
 
@@ -71,8 +79,6 @@ public class TimeSchedulesPage extends CommonPage {
 //    }
 
 
-
-
     public void searchAndSelectAndClickOrganisation(String organisationText) throws InterruptedException {
         WebElement searchField = waitForElementToBeVisible(By.cssSelector(ORGANISATION_SEARCH_FIELD_CSS));
         searchField.sendKeys(organisationText);
@@ -108,131 +114,57 @@ public class TimeSchedulesPage extends CommonPage {
         return pageTitleText;
     }
 
-
-
-//    public void testSelectAvailableDayForEmployee() {
-//        List<WebElement> employeeCells = waitForElementsToBeVisible(By.cssSelector(".VirtualEmployeeCell"));
-//        Random random = new Random();
-//        WebElement selectedEmployee;
-//        String employeeName;
-//
-//        do {
-//            selectedEmployee = employeeCells.get(random.nextInt(employeeCells.size()));
-//            employeeName = selectedEmployee.findElement(By.className("employeeLabel")).getText();
-//            logger.info("Selected Employee: " + employeeName);
-//        } while (employeeName.equals("[Unfilled]"));
-//
-//        boolean daySelected = false;
-//        List<WebElement> daysOfWeek = driver.findElements(By.xpath("//*[@id='header-cInner']/div[position()>1 and position()<=7]"));
-//
-//        for (WebElement day : daysOfWeek) {
-//            if (checkAndSelectAvailableDay(selectedEmployee)) {
-//                daySelected = true;
-//                break;
-//            }
-//        }
-//
-//        if (!daySelected) {
-//            logger.info("No available day for " + employeeName + ", moving to the next employee.");
-//        }
-//
-//        Assert.assertTrue(daySelected, "No available day was selected.");
-//    }
-//
-//
-//    private boolean checkAndSelectAvailableDay(WebElement employee) {
-//        List<WebElement> availableShifts = employee.findElements(By.cssSelector("div[class*='shiftBody']"));
-//        for (WebElement shift : availableShifts) {
-//            if (isShiftAvailable(shift)) {
-//                selectDay(shift);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    private boolean isShiftAvailable(WebElement shift) {
-//        // Check if the shift is available (based on opacity or any other condition)
-//        return shift.getCssValue("opacity").equals("1"); // Assuming opacity 1 means available
-//    }
-//
-//    private void selectDay(WebElement shift) {
-//        // Click on the available shift to select the day
-//        try {
-//            WebElement clickableShift = wait.until(ExpectedConditions.elementToBeClickable(shift));
-//            clickableShift.click();
-//            logger.info("Day selected.");
-//        } catch (ElementNotInteractableException e) {
-//            logger.info("Failed to select shift, retrying...");
-//            wait.until(ExpectedConditions.elementToBeClickable(shift)).click();
-//        }
-//    }
-
-
     public void testSelectAvailableDayForEmployee() {
-        List<WebElement> employeeCells = waitForElementsToBeVisible(By.cssSelector(".VirtualEmployeeCell"));
-        Random random = new Random();
-        WebElement selectedEmployee;
-        String employeeName;
+        List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
+        WebElement selectedEmployee = employees.stream()
+                .filter(e -> !e.findElement(By.className(EMPLOYEE_LABEL_CLASS)).getText().equals("[Unfilled]"))
+                .findFirst()
+                .orElse(null);
 
-        do {
-            selectedEmployee = employeeCells.get(random.nextInt(employeeCells.size()));
-            employeeName = selectedEmployee.findElement(By.className("employeeLabel")).getText();
-            logger.info("Selected Employee: " + employeeName);
-        } while (employeeName.equals("[Unfilled]"));
+        if (selectedEmployee == null) {
+            logger.log(Level.WARNING, "No suitable employee found.");
+            return;
+        }
 
-        boolean daySelected = false;
-        List<WebElement> daysOfWeek = driver.findElements(By.xpath("//*[@id='header-cInner']/div[position()>1 and position()<=7]"));
-
-        for (WebElement day : daysOfWeek) {
-            logger.info("Checking availability for " + employeeName + " on day: " + day.getText());
-            if (checkAndSelectAvailableDay(selectedEmployee)) {
-                daySelected = true;
-                break;
+        logger.info("Selected Employee: " + selectedEmployee.getText());
+        List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
+        boolean foundEmptyCell = daysOfWeek.stream().anyMatch(day -> {
+            logger.info("Processing day: " + day.getText());
+            if (waitForElementsToBeVisible(By.cssSelector(FILLED_CELL_CSS)).contains(day)) {
+                logger.info("Day " + day.getText() + " is filled. Skipping.");
+                return false;
             }
-        }
 
-        if (!daySelected) {
-            logger.info("No available day for " + employeeName + ", moving to the next employee.");
-        }
-
-        Assert.assertTrue(daySelected, "No available day was selected.");
-    }
-
-    private boolean checkAndSelectAvailableDay(WebElement employee) {
-        List<WebElement> availableShifts = employee.findElements(By.cssSelector("div[class*='shiftBody']"));
-
-        if (availableShifts.isEmpty()) {
-            logger.info("No available shifts for this employee.");
-        }
-
-        for (WebElement shift : availableShifts) {
-            logger.info("Checking shift availability.");
-            if (isShiftAvailable(shift)) {
-                logger.info("Available shift found, selecting.");
-                selectDay(shift);
-                return true;
+            WebElement targetCell = getTargetCell(day);
+            if (targetCell != null) {
+                try {
+                    targetCell.click();
+                    logger.info("Cell clicked for employee: " + selectedEmployee.getText());
+                    clickOnAddScheduleMenu();
+                    return true;
+                } catch (ElementClickInterceptedException e) {
+                    clickElementUsingJavaScript(targetCell);
+                    logger.info("Cell clicked using JavaScript for employee: " + selectedEmployee.getText());
+                    clickOnAddScheduleMenu();
+                    return true;
+                }
             }
-        }
-        return false;
-    }
+            return false;
+        });
 
-    private boolean isShiftAvailable(WebElement shift) {
-        // Check if the shift is available (could be based on class name, visibility, etc.)
-        String opacity = shift.getCssValue("opacity");
-        logger.info("Shift opacity: " + opacity);
-        return opacity.equals("1"); // Assuming opacity 1 means available
-    }
-
-    private void selectDay(WebElement shift) {
-        try {
-            WebElement clickableShift = wait.until(ExpectedConditions.elementToBeClickable(shift));
-            clickableShift.click();
-            logger.info("Day selected.");
-        } catch (ElementNotInteractableException e) {
-            logger.info("Failed to select shift, retrying...");
-            wait.until(ExpectedConditions.elementToBeClickable(shift)).click();
+        if (!foundEmptyCell) {
+            logger.info("No empty cell found for the selected employee. Trying another employee.");
+            testSelectAvailableDayForEmployee();
         }
     }
 
-}
+    private WebElement getTargetCell(WebElement day) {
+        WebElement emptyCell = waitForElementToBeVisible(By.cssSelector(EMPTY_CELL_CSS));
+        return (emptyCell != null) ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_VIRTUAL_BACKGROUND_CSS));
+    }
+
+    private void clickOnAddScheduleMenu() {
+        waitForElementToBeVisibleAndClickable(By.xpath(String.format(SHIFT_MENU_ITEM_XPATH, "Add Schedule"))).click();
+    }
+
+    }
