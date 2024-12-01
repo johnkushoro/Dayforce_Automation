@@ -9,8 +9,8 @@
           <include name="springTestContextBeforeTestClass"/>
           <include name="setUpOnceForSuite"/>
           <include name="springTestContextBeforeTestMethod"/>
-          <include name="springTestContextPrepareTestInstance"/>
           <include name="springTestContextAfterTestClass"/>
+          <include name="springTestContextPrepareTestInstance"/>
           <include name="springTestContextAfterTestMethod"/>
           <include name="tearDownAfterSuite"/>
         </methods>

@@ -1,10 +1,7 @@
 
 package com.totallygroup.pageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,5 +113,12 @@ public class CommonPage {
     public void clickElementUsingJavaScript(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
+    }
+
+    public String validateNotEmpty(String value, String errorMessage) {
+        if (value == null || value.isEmpty()) {
+            throw new NoSuchElementException(errorMessage);
+        }
+        return value;
     }
 }

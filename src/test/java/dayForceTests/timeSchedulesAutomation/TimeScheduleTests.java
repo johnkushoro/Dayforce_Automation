@@ -47,6 +47,7 @@ public class TimeScheduleTests extends BaseTest {
     public void verifyDayOfWeekMatchesTitle() {
         timeSchedulePage.testSelectAvailableDayForEmployee();
         timeSchedulePage.verifyDayOfWeekMatchesTitle();
+        timeSchedulePage.verifySearchBarTextMatchesSelectedEmployee();
 
     }
 

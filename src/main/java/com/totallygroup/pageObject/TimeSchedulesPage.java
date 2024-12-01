@@ -34,6 +34,10 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String SHIFT_MENU_ITEM_XPATH = "//td[@class='dijitReset dijitMenuItemLabel' and text()='%s']";
     public static final String EMPTY_CELL_CSS = "div.SchedulerVirtualGridEditControls";
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
+//    public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']";
+    public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']/input";
+
+
 
 
     private final DataStore dataStore;
@@ -139,6 +143,7 @@ public class TimeSchedulesPage extends CommonPage {
                 clickElement(targetCell);
                 logger.info("Cell clicked for employee: " + selectedEmployee.getText());
                 dataStore.setValue("selectedDay", day.getText());
+                dataStore.setValue("selectedEmployee", selectedEmployee.getText());
                 clickOnAddScheduleMenu();
                 return;
             }
@@ -197,6 +202,22 @@ public class TimeSchedulesPage extends CommonPage {
 
         Assert.assertEquals(formattedDay, formattedTitleDate, "Day of week does not match title date.");
         logger.info("Day " + formattedDay + " matches the title date: " + formattedTitleDate);
+    }
+
+
+    public void verifySearchBarTextMatchesSelectedEmployee() {
+        WebElement searchBarInput = waitForElementToBeVisible(
+                By.xpath(String.format(SEARCH_BAR_BY_LABEL_XPATH, "Employee"))
+        );
+
+        if (searchBarInput == null)
+            throw new NoSuchElementException("Search bar input element not found for label 'Employee'");
+
+        String searchBarText = validateNotEmpty(searchBarInput.getAttribute("value"), "Search bar input contains no value.");
+        String selectedEmployee = validateNotEmpty((String) dataStore.getValue("selectedEmployee"), "Selected employee value is missing in the data store.");
+
+        logger.info("Search bar text: " + searchBarText + ", Selected employee: " + selectedEmployee);
+        Assert.assertEquals(searchBarText, selectedEmployee, "Selected employee does not match the search bar text.");
     }
 
 
