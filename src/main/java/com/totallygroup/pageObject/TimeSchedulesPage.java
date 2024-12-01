@@ -36,6 +36,8 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
 //    public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']";
     public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']/input";
+    public static final String BUTTON_BY_TEXT_XPATH = "//div[contains(@class, 'sc-jtHMlw')]//button[normalize-space(text())='%s']";
+
 
 
 
@@ -219,6 +221,18 @@ public class TimeSchedulesPage extends CommonPage {
         logger.info("Search bar text: " + searchBarText + ", Selected employee: " + selectedEmployee);
         Assert.assertEquals(searchBarText, selectedEmployee, "Selected employee does not match the search bar text.");
     }
+
+
+public void clickButtonByText(String buttonText) {
+    By locator = By.xpath(String.format(BUTTON_BY_TEXT_XPATH, buttonText));
+
+    if (!waitForElementToBeClickable(locator).isEnabled()) {
+        throw new IllegalStateException("Button with text '" + buttonText + "' is disabled and cannot be clicked.");
+    }
+
+    click(locator);
+}
+
 
 
 }
