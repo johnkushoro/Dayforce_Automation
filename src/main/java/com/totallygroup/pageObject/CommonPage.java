@@ -12,6 +12,9 @@ import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+
+import static com.totallygroup.utils.Config.logger;
 
 @Component
 public class CommonPage {
@@ -121,4 +124,17 @@ public class CommonPage {
         }
         return value;
     }
+
+    public void clickElement(WebElement element) {
+        try {
+            element.click();
+            logger.info("Clicked on element: " + element.getText());
+        } catch (ElementClickInterceptedException e) {
+            clickElementUsingJavaScript(element);
+            logger.info("Element clicked using JavaScript: " + element.getText());
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Failed to click on element: " + element.getText(), e);
+        }
+    }
+
 }

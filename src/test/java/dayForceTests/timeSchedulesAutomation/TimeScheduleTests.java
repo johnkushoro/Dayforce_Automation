@@ -30,9 +30,11 @@ public class TimeScheduleTests extends BaseTest {
 //        timeSchedulePage.clickTooltipLoadButton();
 
         timeSchedulePage.searchAndSelectAndClickOrganisation("Arun House - YAS 999");
+       // timeSchedulePage.searchAndSelectAndClickOrganisation("Alnwick Infirmary - NBL OOH");
         timeSchedulePage.clickOrganisationOkButton("OK");
         timeSchedulePage.clickTooltipLoadButton();
         assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS 999", "Shift assignment failed.");
+      //  assertEquals(timeSchedulePage.getLoadedPageTitle(), "Alnwick Infirmary - NBL OOH", "Shift assignment failed.");
     }
 
 //    @Test
@@ -51,6 +53,11 @@ public class TimeScheduleTests extends BaseTest {
         timeSchedulePage.clickButtonByText("OK");
 
     }
+
+//    @Test
+//    public void testDragAndDropShift() {
+//
+//    }
 
 
 }

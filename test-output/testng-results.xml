@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="4" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-12-01T21:23:52 GMT" name="Command line suite" finished-at="2024-12-01T21:25:48 GMT" duration-ms="116108">
+  <suite started-at="2024-12-03T07:26:39 GMT" name="Command line suite" finished-at="2024-12-03T07:27:33 GMT" duration-ms="54297">
     <groups>
     </groups>
-    <test started-at="2024-12-01T21:23:52 GMT" name="Command line test" finished-at="2024-12-01T21:25:48 GMT" duration-ms="116108">
+    <test started-at="2024-12-03T07:26:39 GMT" name="Command line test" finished-at="2024-12-03T07:27:33 GMT" duration-ms="54297">
       <class name="dayForceTests.timeSchedulesAutomation.TimeScheduleTests">
-        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextBeforeTestClass" finished-at="2024-12-01T21:24:29 GMT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextBeforeTestClass" finished-at="2024-12-03T07:27:01 GMT" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestClass -->
-        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextPrepareTestInstance" finished-at="2024-12-01T21:24:29 GMT" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" duration-ms="7" status="PASS">
+        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextPrepareTestInstance" finished-at="2024-12-03T07:27:01 GMT" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextPrepareTestInstance -->
-        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-01T21:24:29 GMT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-03T07:27:01 GMT" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -26,15 +26,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:29 GMT" name="setUpOnceForSuite" finished-at="2024-12-01T21:24:29 GMT" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpOnceForSuite -->
-        <test-method signature="testLoadOrganisation()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:29 GMT" name="testLoadOrganisation" finished-at="2024-12-01T21:24:44 GMT" duration-ms="14510" status="PASS">
+        <test-method signature="testLoadOrganisation()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:01 GMT" name="testLoadOrganisation" finished-at="2024-12-03T07:27:19 GMT" duration-ms="18231" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoadOrganisation -->
-        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:44 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-01T21:24:44 GMT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:01 GMT" name="setUpOnceForSuite" finished-at="2024-12-03T07:27:01 GMT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpOnceForSuite -->
+        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:19 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-03T07:27:19 GMT" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -45,7 +45,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
-        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:44 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-01T21:24:44 GMT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:19 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-03T07:27:19 GMT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -56,19 +56,78 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method signature="verifyDayOfWeekMatchesTitle()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:44 GMT" name="verifyDayOfWeekMatchesTitle" finished-at="2024-12-01T21:25:48 GMT" duration-ms="64271" status="PASS">
+        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:19 GMT" name="setUpOnceForSuite" finished-at="2024-12-03T07:27:19 GMT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpOnceForSuite -->
+        <test-method signature="verifyDayOfWeekMatchesTitle()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:19 GMT" name="verifyDayOfWeekMatchesTitle" finished-at="2024-12-03T07:27:33 GMT" duration-ms="13775" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[No day selected for verification.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: No day selected for verification.
+at com.totallygroup.pageObject.TimeSchedulesPage.verifyDayOfWeekMatchesTitle(TimeSchedulesPage.java:296)
+at dayForceTests.timeSchedulesAutomation.TimeScheduleTests.verifyDayOfWeekMatchesTitle(TimeScheduleTests.java:51)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:260)
+at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.run(AbstractTestNGSpringContextTests.java:186)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:274)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:678)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at Runners.TestRunner.runTests(TestRunner.java:43)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyDayOfWeekMatchesTitle -->
-        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:24:44 GMT" name="setUpOnceForSuite" finished-at="2024-12-01T21:24:44 GMT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpOnceForSuite -->
-        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:25:48 GMT" name="springTestContextAfterTestClass" finished-at="2024-12-01T21:25:48 GMT" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- springTestContextAfterTestClass -->
-        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@6293e39e]" started-at="2024-12-01T21:25:48 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-01T21:25:48 GMT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:33 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-03T07:27:33 GMT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -79,21 +138,25 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:dayForceTests.timeSchedulesAutomation.TimeScheduleTests@2d66530f]" started-at="2024-12-03T07:27:33 GMT" name="springTestContextAfterTestClass" finished-at="2024-12-03T07:27:33 GMT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
       </class> <!-- dayForceTests.timeSchedulesAutomation.TimeScheduleTests -->
       <class name="dayForceTests.HomePageTests">
-        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextBeforeTestClass" finished-at="2024-12-01T21:24:29 GMT" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextBeforeTestClass" finished-at="2024-12-03T07:27:01 GMT" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestClass -->
-        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextPrepareTestInstance" finished-at="2024-12-01T21:24:29 GMT" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextPrepareTestInstance" finished-at="2024-12-03T07:27:01 GMT" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextPrepareTestInstance -->
-        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="setUpOnceForSuite" finished-at="2024-12-01T21:24:29 GMT" duration-ms="1" status="PASS">
+        <test-method signature="testHamburgerToOpenSideMenu()[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="testHamburgerToOpenSideMenu" finished-at="2024-12-03T07:27:01 GMT" duration-ms="163" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpOnceForSuite -->
-        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-01T21:24:29 GMT" duration-ms="0" status="PASS">
+        </test-method> <!-- testHamburgerToOpenSideMenu -->
+        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-03T07:27:01 GMT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -104,11 +167,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method signature="testHamburgerToOpenSideMenu()[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="testHamburgerToOpenSideMenu" finished-at="2024-12-01T21:24:29 GMT" duration-ms="146" status="PASS">
+        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="setUpOnceForSuite" finished-at="2024-12-03T07:27:01 GMT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testHamburgerToOpenSideMenu -->
-        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-01T21:24:29 GMT" duration-ms="0" status="PASS">
+        </test-method> <!-- setUpOnceForSuite -->
+        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-03T07:27:01 GMT" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -119,21 +182,21 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
-        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:dayForceTests.HomePageTests@2e34384c]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextAfterTestClass" finished-at="2024-12-01T21:24:29 GMT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:dayForceTests.HomePageTests@6d91790b]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextAfterTestClass" finished-at="2024-12-03T07:27:01 GMT" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestClass -->
       </class> <!-- dayForceTests.HomePageTests -->
       <class name="dayForceTests.LoginPageTests">
-        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:23:52 GMT" name="springTestContextBeforeTestClass" finished-at="2024-12-01T21:23:52 GMT" duration-ms="9" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:39 GMT" name="springTestContextBeforeTestClass" finished-at="2024-12-03T07:26:39 GMT" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestClass -->
-        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:23:52 GMT" name="springTestContextPrepareTestInstance" finished-at="2024-12-01T21:23:56 GMT" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" duration-ms="4089" status="PASS">
+        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:39 GMT" name="springTestContextPrepareTestInstance" finished-at="2024-12-03T07:26:42 GMT" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" duration-ms="3639" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextPrepareTestInstance -->
-        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:23:56 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-01T21:23:56 GMT" duration-ms="4" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:42 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-03T07:26:42 GMT" duration-ms="5" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -144,11 +207,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:23:56 GMT" name="setUpOnceForSuite" finished-at="2024-12-01T21:23:58 GMT" duration-ms="2177" status="PASS">
+        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:42 GMT" name="setUpOnceForSuite" finished-at="2024-12-03T07:26:44 GMT" duration-ms="1698" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpOnceForSuite -->
-        <test-method signature="testAccountLogin(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:23:58 GMT" name="testAccountLogin" data-provider="loginDataProvider" finished-at="2024-12-01T21:24:11 GMT" duration-ms="12731" status="PASS">
+        <test-method signature="testAccountLogin(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:44 GMT" name="testAccountLogin" data-provider="loginDataProvider" finished-at="2024-12-03T07:26:51 GMT" duration-ms="7328" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -169,7 +232,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAccountLogin -->
-        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:24:11 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-01T21:24:11 GMT" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:51 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-03T07:26:51 GMT" duration-ms="4" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -180,7 +243,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
-        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:24:11 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-01T21:24:11 GMT" duration-ms="4" status="PASS">
+        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:51 GMT" name="springTestContextBeforeTestMethod" finished-at="2024-12-03T07:26:51 GMT" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -191,15 +254,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:24:11 GMT" name="setUpOnceForSuite" finished-at="2024-12-01T21:24:11 GMT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="setUpOnceForSuite()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:51 GMT" name="setUpOnceForSuite" finished-at="2024-12-03T07:26:51 GMT" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpOnceForSuite -->
-        <test-method signature="testNavigateToHomePage()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:24:11 GMT" name="testNavigateToHomePage" finished-at="2024-12-01T21:24:29 GMT" duration-ms="18115" status="PASS">
+        <test-method signature="testNavigateToHomePage()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:26:51 GMT" name="testNavigateToHomePage" finished-at="2024-12-03T07:27:01 GMT" duration-ms="9377" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testNavigateToHomePage -->
-        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-01T21:24:29 GMT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextAfterTestMethod" finished-at="2024-12-03T07:27:01 GMT" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -210,11 +273,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
-        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:24:29 GMT" name="springTestContextAfterTestClass" finished-at="2024-12-01T21:24:29 GMT" duration-ms="4" status="PASS">
+        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:27:01 GMT" name="springTestContextAfterTestClass" finished-at="2024-12-03T07:27:01 GMT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestClass -->
-        <test-method is-config="true" signature="tearDownAfterSuite()[pri:0, instance:dayForceTests.LoginPageTests@20095ab4]" started-at="2024-12-01T21:25:48 GMT" name="tearDownAfterSuite" finished-at="2024-12-01T21:25:49 GMT" duration-ms="248" status="PASS">
+        <test-method is-config="true" signature="tearDownAfterSuite()[pri:0, instance:dayForceTests.LoginPageTests@599f571f]" started-at="2024-12-03T07:27:33 GMT" name="tearDownAfterSuite" finished-at="2024-12-03T07:27:34 GMT" duration-ms="376" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownAfterSuite -->

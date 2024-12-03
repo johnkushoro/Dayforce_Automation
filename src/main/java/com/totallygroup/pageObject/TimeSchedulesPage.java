@@ -3,10 +3,12 @@ package com.totallygroup.pageObject;
 
 import com.totallygroup.utils.DataStore;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 import static com.totallygroup.utils.Config.logger;
@@ -33,6 +35,7 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String CELL_WITH_VIRTUAL_BACKGROUND_CSS = ".VirtualBackgroundCell.SchedulerBackgroundCell.allDayTAFW";
     public static final String SHIFT_MENU_ITEM_XPATH = "//td[@class='dijitReset dijitMenuItemLabel' and text()='%s']";
     public static final String EMPTY_CELL_CSS = "div.SchedulerVirtualGridEditControls";
+    public static final String CELL_DROPDOWN_CSS = "td[id^='addButton_Timesheet'] div.dijitReset.dijitArrowButtonInner";
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
 //    public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']";
     public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']/input";
@@ -121,6 +124,41 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
+//    public void testSelectAvailableDayForEmployee() {
+//        WebElement selectedEmployee = getSelectedEmployee();
+//        if (selectedEmployee == null) {
+//            logger.log(Level.WARNING, "No suitable employee found.");
+//            return;
+//        }
+//
+//        logger.info("Selected Employee: " + selectedEmployee.getText());
+//
+//        clickElement(selectedEmployee);
+//
+//        List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
+//        for (WebElement day : daysOfWeek) {
+//            logger.info("Processing day: " + day.getText());
+//            if (isDayFilled(day)) {
+//                logger.info("Day " + day.getText() + " is filled. Skipping.");
+//                continue;
+//            }
+//
+//            WebElement targetCell = getTargetCell(day);
+//            if (targetCell != null) {
+//              //  clickCellDownArrow();
+//                 clickElement(targetCell);
+//                logger.info("Cell clicked for employee: " + selectedEmployee.getText());
+//                dataStore.setValue("selectedDay", day.getText());
+//                dataStore.setValue("selectedEmployee", selectedEmployee.getText());
+//                clickOnAddScheduleMenu();
+//                return;
+//            }
+//        }
+//
+//        logger.info("No empty cell found for the selected employee.");
+//    }
+
+
     public void testSelectAvailableDayForEmployee() {
         WebElement selectedEmployee = getSelectedEmployee();
         if (selectedEmployee == null) {
@@ -129,30 +167,52 @@ public class TimeSchedulesPage extends CommonPage {
         }
 
         logger.info("Selected Employee: " + selectedEmployee.getText());
-
         clickElement(selectedEmployee);
 
-        List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
-        for (WebElement day : daysOfWeek) {
-            logger.info("Processing day: " + day.getText());
-            if (isDayFilled(day)) {
-                logger.info("Day " + day.getText() + " is filled. Skipping.");
-                continue;
-            }
+        waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS)).stream()
+                .filter(day -> {
+                    logger.info("Processing day: " + day.getText());
+                    if (isDayFilled(day)) {
+                        logger.info("Day " + day.getText() + " is filled. Skipping.");
+                        return false;
+                    }
+                    return true;
+                })
+                .map(this::getTargetCell)
+                .filter(Objects::nonNull)
+                .findFirst()
+                .ifPresentOrElse(
+                        targetCell -> processCell(selectedEmployee, targetCell),
+                        () -> logger.info("No empty cell found for the selected employee.")
+                );
+    }
 
-            WebElement targetCell = getTargetCell(day);
-            if (targetCell != null) {
-                clickElement(targetCell);
-                logger.info("Cell clicked for employee: " + selectedEmployee.getText());
-                dataStore.setValue("selectedDay", day.getText());
-                dataStore.setValue("selectedEmployee", selectedEmployee.getText());
-                clickOnAddScheduleMenu();
-                return;
-            }
+    private void processCell(WebElement selectedEmployee, WebElement targetCell) {
+        boolean isDropdown = isElementVisible(By.cssSelector(CELL_DROPDOWN_CSS));
+        if (isDropdown) {
+            click(By.cssSelector(CELL_DROPDOWN_CSS));
+            logger.info("Dropdown clicked for employee: " + selectedEmployee.getText());
+            click(By.xpath(String.format(SHIFT_MENU_ITEM_XPATH, "Add Schedule")));
+        } else {
+            clickElement(targetCell);
+            logger.info("Cell clicked for employee: " + selectedEmployee.getText());
         }
 
-        logger.info("No empty cell found for the selected employee.");
+        dataStore.setValue("selectedDay", targetCell.getAttribute("data-day"));
+        dataStore.setValue("selectedEmployee", selectedEmployee.getText());
     }
+
+    private boolean isElementVisible(By locator) {
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+        } catch (TimeoutException e) {
+            logger.warning("Element not visible within timeout: " + locator);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Unexpected error while checking visibility of element: " + locator, e);
+        }
+        return false;
+    }
+
 
     private WebElement getSelectedEmployee() {
         List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
@@ -162,17 +222,6 @@ public class TimeSchedulesPage extends CommonPage {
                 .orElse(null);
     }
 
-    private void clickElement(WebElement element) {
-        try {
-            element.click();
-            logger.info("Clicked on element: " + element.getText());
-        } catch (ElementClickInterceptedException e) {
-            clickElementUsingJavaScript(element);
-            logger.info("Element clicked using JavaScript: " + element.getText());
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Failed to click on element: " + element.getText(), e);
-        }
-    }
 
     private boolean isDayFilled(WebElement day) {
         List<WebElement> filledCells = waitForElementsToBeVisible(By.cssSelector(FILLED_CELL_CSS));
@@ -185,7 +234,10 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
     private void clickOnAddScheduleMenu() {
-        waitForElementToBeVisibleAndClickable(By.xpath(String.format(SHIFT_MENU_ITEM_XPATH, "Add Schedule"))).click();
+        waitForElementToBeClickable(By.xpath(String.format(SHIFT_MENU_ITEM_XPATH, "Add Schedule"))).click();
+    }
+    private void clickCellDownArrow() {
+        click(By.cssSelector(CELL_DROPDOWN_CSS));
     }
 
 
@@ -232,7 +284,6 @@ public void clickButtonByText(String buttonText) {
 
     click(locator);
 }
-
 
 
 }
