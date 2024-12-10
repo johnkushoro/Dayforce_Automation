@@ -42,9 +42,9 @@ public class LoginPageTests extends BaseTest {
 
         loginPage.clickCookieButton("Accept All Cookies");
         loginPage.clickSkipButton();
-        loginPage.selectRoleRadioButtonByText("Client Administrator No MFA");
+        loginPage.selectRoleRadioButtonByText("Client Administrator");
         loginPage.clickRolePageNextButton("Next");
-       // loginPage.clickDayforceNewsOkButton();
+      //  loginPage.clickDayforceNewsOkButton();
 
         boolean isLogoDisplayed = loginPage.isTotallyLogoDisplayed();
         Assert.assertTrue(isLogoDisplayed, "The Totally logo was not displayed on the home page.");

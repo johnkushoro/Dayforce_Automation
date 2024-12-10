@@ -137,4 +137,15 @@ public class CommonPage {
         }
     }
 
+    public void waitForDOMToStabilize() {
+        try {
+            wait.until(driver -> Objects.equals(((JavascriptExecutor) driver)
+                    .executeScript("return document.readyState"), "complete"));
+            logger.info("DOM has stabilized.");
+        } catch (Exception e) {
+            throw new RuntimeException("DOM did not stabilize within " + timeoutInSeconds + " seconds.", e);
+        }
+    }
+
+
 }

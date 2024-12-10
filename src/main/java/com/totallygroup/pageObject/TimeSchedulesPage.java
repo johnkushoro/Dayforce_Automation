@@ -2,14 +2,18 @@
 package com.totallygroup.pageObject;
 
 import com.totallygroup.utils.DataStore;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
+import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 import static com.totallygroup.utils.Config.logger;
@@ -27,23 +31,22 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String LOADED_ORGANISATION_TITLE = "//div[@class='dijitOutput left-decoration DecorationText']";
     public static final String HIGHLIGHTED_ORGANISATION_CSS = ".dijitComboBoxHighlightMatch";
     public static final String HIGHLIGHTED_ORGANISATION_XPATH = "//div[@class='dijitReset dijitMenuItem']";
+    public static final String SELECTED_ORGANISATION_CSS = "div.dijitTreeRowSelected span[role='treeitem']";
+
     //    public static final String ORGANISATION_BY_TEXT_XPATH = "//div[text()='%s']";
 
 
     public static final String EMPLOYEE_LIST_CSS = ".VirtualEmployeeCell";
     public static final String DAY_OF_WEEK_CSS = ".defaultHeaderCell .text";
-    public static final String FILLED_CELL_CSS = ".VirtualScheduleCell[style*='opacity: 0.5']";
-    public static final String CELL_WITH_VIRTUAL_BACKGROUND_CSS = ".VirtualBackgroundCell.SchedulerBackgroundCell.allDayTAFW";
+    public static final String CELL_WITH_ANNUAL_LEAVE_CSS = ".VirtualBackgroundCell.SchedulerBackgroundCell.allDayTAFW";
     public static final String SHIFT_MENU_ITEM_XPATH = "//td[@class='dijitReset dijitMenuItemLabel' and text()='%s']";
     public static final String EMPTY_CELL_CSS = "div.SchedulerVirtualGridEditControls";
+    public static final String SCHEDULED_CELL_LOCATOR = ".VirtualScheduleCell";
+
     public static final String CELL_DROPDOWN_CSS = "td[id^='addButton_Timesheet'] div.dijitReset.dijitArrowButtonInner";
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
-//    public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']";
     public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']/input";
     public static final String BUTTON_BY_TEXT_XPATH = "//div[contains(@class, 'sc-jtHMlw')]//button[normalize-space(text())='%s']";
-
-
-
 
 
     private final DataStore dataStore;
@@ -66,30 +69,41 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
-//    public void selectRandomOrganisationLocation() throws InterruptedException {
-//        List<WebElement> organisationElements = waitForElementsToBeVisible(By.xpath(HIGHLIGHTED_ORGANISATION_XPATH));
-//
-//        if (organisationElements.isEmpty()) throw new NoSuchElementException("No organisation location elements found.");
-//
-//        WebElement randomOrganisation = organisationElements.get(ThreadLocalRandom.current().nextInt(organisationElements.size()));
-//        wait.until(ExpectedConditions.elementToBeClickable(randomOrganisation)).click();
-//
-//        waitForElementsToNotBeVisible(By.xpath(HIGHLIGHTED_ORGANISATION_XPATH));
-//        Thread.sleep(2000);
-//
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        String organisationText = (String) js.executeScript("return arguments[0].innerText;", randomOrganisation);
-//
-//        if (organisationText == null) {
-//            organisationText = "Unknown Organisation";
-//        }
-//
-//        logger.info("Selected random organisation: " + organisationText);
-//        dataStore.setValue("selectedOrganisation", organisationText);
-//    }
+    public void selectRandomOrganisationLocation() throws InterruptedException {
+        List<WebElement> organisationElements = waitForElementsToBeVisible(By.xpath(HIGHLIGHTED_ORGANISATION_XPATH));
+
+        if (organisationElements.isEmpty()) {
+            throw new NoSuchElementException("No organisation location elements found.");
+        }
+
+        WebElement randomOrganisation = organisationElements.get(ThreadLocalRandom.current().nextInt(organisationElements.size()));
+        wait.until(ExpectedConditions.elementToBeClickable(randomOrganisation)).click();
+
+        waitForElementsToNotBeVisible(By.xpath(HIGHLIGHTED_ORGANISATION_XPATH));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String organisationText = (String) js.executeScript("return arguments[0].innerText;", randomOrganisation);
+
+        if (organisationText == null) {
+            organisationText = "Unknown Organisation";
+        }
+
+        logger.info("Selected random organisation: " + organisationText);
+        dataStore.setValue("selectedOrganisation", organisationText);
 
 
-    public void searchAndSelectAndClickOrganisation(String organisationText) throws InterruptedException {
+        WebElement selectedOrganisation = waitForElementToBeVisible(By.cssSelector(SELECTED_ORGANISATION_CSS));
+        String selectedOrganisationText = selectedOrganisation.getText();
+
+        if (!selectedOrganisationText.equals(organisationText)) {
+            throw new AssertionError("Selected organisation text does not match the random organisation text. Expected: " + organisationText + ", Found: " + selectedOrganisationText);
+        }
+
+        logger.info("Verified selected organisation matches the random organisation: " + organisationText);
+    }
+
+
+    public void searchAndSelectAndClickOrganisation(String organisationText) {
         WebElement searchField = waitForElementToBeVisible(By.cssSelector(ORGANISATION_SEARCH_FIELD_CSS));
         searchField.sendKeys(organisationText);
 
@@ -100,11 +114,16 @@ public class TimeSchedulesPage extends CommonPage {
         }
 
         click(By.cssSelector(HIGHLIGHTED_ORGANISATION_CSS));
-
         waitForElementsToNotBeVisible(By.cssSelector(HIGHLIGHTED_ORGANISATION_CSS));
-        Thread.sleep(2000);
 
-        logger.info("Organisation clicked: " + organisationText);
+        WebElement selectedOrganisation = waitForElementToBeVisible(By.cssSelector(SELECTED_ORGANISATION_CSS));
+        String selectedOrganisationText = selectedOrganisation.getText();
+
+        if (!selectedOrganisationText.equals(organisationText)) {
+            throw new AssertionError("Selected organisation text does not match entered text. Expected: " + organisationText + ", Found: " + selectedOrganisationText);
+        }
+
+        logger.info("Verified selected organisation matches the entered text: " + organisationText);
     }
 
 
@@ -125,42 +144,6 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
-//    public void testSelectAvailableDayForEmployee() {
-//        WebElement selectedEmployee = getSelectedEmployee();
-//        if (selectedEmployee == null) {
-//            logger.log(Level.WARNING, "No suitable employee found.");
-//            return;
-//        }
-//
-//        logger.info("Selected Employee: " + selectedEmployee.getText());
-//
-//        clickElement(selectedEmployee);
-//
-//        List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
-//        for (WebElement day : daysOfWeek) {
-//            logger.info("Processing day: " + day.getText());
-//            if (isDayFilled(day)) {
-//                logger.info("Day " + day.getText() + " is filled. Skipping.");
-//                continue;
-//            }
-//
-//            WebElement targetCell = getTargetCell(day);
-//            if (targetCell != null) {
-//                clickCellDownArrow();
-//               //  clickElement(targetCell);
-//                logger.info("Cell clicked for employee: " + selectedEmployee.getText());
-//                dataStore.setValue("selectedDay", day.getText());
-//                dataStore.setValue("selectedEmployee", selectedEmployee.getText());
-//                clickOnAddScheduleMenu();
-//                return;
-//            }
-//        }
-//
-//        logger.info("No empty cell found for the selected employee.");
-//    }
-
-
-
     public void testSelectAvailableDayForEmployee() {
         WebElement selectedEmployee = getSelectedEmployee();
         if (selectedEmployee == null) {
@@ -177,7 +160,7 @@ public class TimeSchedulesPage extends CommonPage {
             }
 
             WebElement targetCell = getTargetCell(day);
-            if (targetCell != null) {
+            if (targetCell != null && isElementEmptyCell(targetCell)) {
                 if (isElementVisible(By.cssSelector(CELL_DROPDOWN_CSS))) {
                     clickCellDownArrow();
                     clickOnAddScheduleMenu();
@@ -193,6 +176,16 @@ public class TimeSchedulesPage extends CommonPage {
 
         logger.info("No empty cell found for the selected employee.");
     }
+
+    private boolean isElementEmptyCell(WebElement cell) {
+        String cellClass = Objects.requireNonNull(cell.getAttribute("class"));
+
+        boolean isScheduledCell = cellClass.contains(SCHEDULED_CELL_LOCATOR);
+        boolean isAnnualLeaveCell = cellClass.contains(CELL_WITH_ANNUAL_LEAVE_CSS);
+
+        return cellClass.contains("SchedulerVirtualGridEditControls") && !isScheduledCell && !isAnnualLeaveCell;
+    }
+
 
 
     private boolean isElementVisible(By selector) {
@@ -214,13 +207,13 @@ public class TimeSchedulesPage extends CommonPage {
 
 
     private boolean isDayFilled(WebElement day) {
-        List<WebElement> filledCells = waitForElementsToBeVisible(By.cssSelector(FILLED_CELL_CSS));
+        List<WebElement> filledCells = waitForElementsToBeVisible(By.cssSelector(SCHEDULED_CELL_LOCATOR));
         return filledCells.contains(day);
     }
 
     private WebElement getTargetCell(WebElement day) {
         WebElement emptyCell = waitForElementToBeVisible(By.cssSelector(EMPTY_CELL_CSS));
-        return emptyCell != null ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_VIRTUAL_BACKGROUND_CSS));
+        return emptyCell != null ? emptyCell : waitForElementToBeVisible(By.cssSelector(CELL_WITH_ANNUAL_LEAVE_CSS));
     }
 
     private void clickOnAddScheduleMenu() {
@@ -266,15 +259,160 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
-public void clickButtonByText(String buttonText) {
-    By locator = By.xpath(String.format(BUTTON_BY_TEXT_XPATH, buttonText));
+    public void clickButtonByText(String buttonText) {
+        WebElement buttonTextLocator = driver.findElement(By.xpath(String.format(BUTTON_BY_TEXT_XPATH, buttonText)));
 
-    if (!waitForElementToBeClickable(locator).isEnabled()) {
-        throw new IllegalStateException("Button with text '" + buttonText + "' is disabled and cannot be clicked.");
+        scrollToElement(buttonTextLocator);
+        waitForElementToBeClickable(By.xpath(String.format(BUTTON_BY_TEXT_XPATH, buttonText)));
+
+        if (!buttonTextLocator.isEnabled()) {
+            throw new IllegalStateException("Button with text '" + buttonText + "' is disabled and cannot be clicked.");
+        }
+        buttonTextLocator.click();
     }
 
-    click(locator);
-}
 
+    public Map<String, String> getSelectedEmployeeAndDay() {
+        String selectedEmployee = (String) dataStore.getValue("selectedEmployee");
+        String selectedDay = (String) dataStore.getValue("selectedDay");
+
+        if (selectedEmployee == null || selectedEmployee.isEmpty()) {
+            throw new IllegalStateException("No employee selected.");
+        }
+
+        if (selectedDay == null || selectedDay.isEmpty()) {
+            throw new IllegalStateException("No day selected.");
+        }
+
+        Map<String, String> selection = new HashMap<>();
+        selection.put("selectedEmployee", selectedEmployee);
+        selection.put("selectedDay", selectedDay);
+
+        return selection;
+    }
+
+//    public void performDragAndDropFromSelectedCell() {
+//        Map<String, String> selection = getSelectedEmployeeAndDay();
+//        String selectedEmployee = selection.get("selectedEmployee");
+//        String selectedDay = selection.get("selectedDay");
+//
+//        WebElement employee = findEmployeeCell(selectedEmployee);
+//        WebElement day = findDayCell(selectedDay);
+//
+//        if (employee != null && day != null) {
+//            Actions actions = new Actions(driver);
+//            actions.clickAndHold(employee)
+//                    .moveToElement(day)
+//                    .release()
+//                    .perform();
+//            logger.info("Dragged and dropped from " + selectedEmployee + " on " + selectedDay);
+//        } else {
+//            logger.log(Level.WARNING, "Unable to find employee or day for drag and drop.");
+//        }
+//    }
+
+
+    public void performDragAndDropFromSelectedCell() {
+        Map<String, String> selection = getSelectedEmployeeAndDay();
+        String selectedEmployee = selection.get("selectedEmployee");
+        String selectedDay = selection.get("selectedDay");
+
+        WebElement employee = findEmployeeCell(selectedEmployee);
+        WebElement day = findDayCell(selectedDay);
+
+        if (employee != null && day != null) {
+            Actions actions = new Actions(driver);
+            actions.clickAndHold(employee)
+                    .pause(Duration.ofMinutes(1))
+                    .moveToElement(day)
+                    .release()
+                    .perform();
+            logger.info("Dragged and dropped from " + selectedEmployee + " on " + selectedDay);
+        } else {
+            logger.log(Level.WARNING, "Unable to find employee or day for drag and drop.");
+        }
+    }
+
+
+
+    private WebElement findEmployeeCell(String employeeName) {
+        List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
+        for (WebElement employee : employees) {
+            if (employee.getText().equals(employeeName)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    private WebElement findDayCell(String day) {
+        List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
+        for (WebElement dayElement : daysOfWeek) {
+            if (dayElement.getText().equals(day)) {
+                return dayElement;
+            }
+        }
+        return null;
+    }
+
+
+
+    public void performDragAndDropToAnotherEmployee() {
+        Map<String, String> selection = getSelectedEmployeeAndDay();
+        String sourceDay = selection.get("selectedDay");
+
+        // Locate the source element using the given selector
+        WebElement sourceElement = waitForElementToBeVisible(By.cssSelector("#content-cInner > div.SchedulerVirtualGridEditControls"));
+
+        if (sourceElement == null) {
+            throw new IllegalStateException("Source element for drag operation not found.");
+        }
+
+        List<WebElement> employees = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
+        boolean shiftDropped = false;
+
+        for (WebElement targetEmployee : employees) {
+            String targetEmployeeName = targetEmployee.findElement(By.className(EMPLOYEE_LABEL_CLASS)).getText();
+
+            if (targetEmployeeName.equals("[Unfilled]")) {
+                continue;
+            }
+
+            List<WebElement> daysOfWeek = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_CSS));
+            for (WebElement day : daysOfWeek) {
+                if (!isDayFilled(day)) {
+                    WebElement targetCell = getTargetCell(day);
+                    if (targetCell != null) {
+                        try {
+                            // Perform the drag-and-drop action
+                            Actions actions = new Actions(driver);
+                            actions.clickAndHold(sourceElement)
+                                    .moveToElement(targetCell)
+                                    .release()
+                                    .perform();
+
+                            logger.info("Shift moved from source element to " + targetEmployeeName +
+                                    " on " + day.getText());
+
+                            waitForDOMToStabilize(); // Wait for DOM changes
+                            shiftDropped = true;
+                            break;
+                        } catch (Exception e) {
+                            logger.warning("Failed to drop shift on " + targetEmployeeName + " for day " + day.getText() + ": " + e.getMessage());
+                        }
+                    }
+                }
+            }
+
+            if (shiftDropped) {
+                break;
+            }
+        }
+
+        if (!shiftDropped) {
+            throw new IllegalStateException("Unable to drop the shift to any employee.");
+        }
+
+    }
 
 }

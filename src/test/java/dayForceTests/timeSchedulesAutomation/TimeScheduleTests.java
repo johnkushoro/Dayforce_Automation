@@ -28,7 +28,7 @@ public class TimeScheduleTests extends BaseTest {
 //        timeSchedulePage.selectRandomOrganisationLocation();
 //        timeSchedulePage.clickOrganisationOkButton("OK");
 //        timeSchedulePage.clickTooltipLoadButton();
-
+//
     //    timeSchedulePage.searchAndSelectAndClickOrganisation("Arun House - YAS 999");
         timeSchedulePage.searchAndSelectAndClickOrganisation("Alnwick Infirmary - NBL OOH");
         timeSchedulePage.clickOrganisationOkButton("OK");
@@ -39,8 +39,8 @@ public class TimeScheduleTests extends BaseTest {
 
 //    @Test
 //    public void verifyOrganisationTitleMatchesSelectedOrganisation() {
-////        assertEquals(timeSchedulePage.getLoadedPageTitle().trim(), ((String) dataStore.getValue("selectedOrganisation")).trim(),
-////                "Loaded organisation title does not match the selected organisation.");
+//        assertEquals(timeSchedulePage.getLoadedPageTitle().trim(), ((String) dataStore.getValue("selectedOrganisation")).trim(),
+//                "Loaded organisation title does not match the selected organisation.");
 //
 //}
 
@@ -51,13 +51,17 @@ public class TimeScheduleTests extends BaseTest {
         timeSchedulePage.verifyDayOfWeekMatchesTitle();
         timeSchedulePage.verifySearchBarTextMatchesSelectedEmployee();
         timeSchedulePage.clickButtonByText("OK");
+//        timeSchedulePage.performDragAndDropFromSelectedCell();
+//        timeSchedulePage.performDragAndDropToAnotherEmployee();
 
     }
 
-//    @Test
-//    public void testDragAndDropShift() {
-//
-//    }
+
+    @Test
+    public void testDragAndDropShift() {
+
+
+    }
 
 
 }
