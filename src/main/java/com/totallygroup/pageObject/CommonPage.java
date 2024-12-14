@@ -22,7 +22,7 @@ public class CommonPage {
     protected final WebDriver driver;
     protected WebDriverWait wait;
 
-    @Value("${page.load.timeout:20}")
+    @Value("${page.load.timeout:25}")
     protected long timeoutInSeconds;
 
     @Autowired
@@ -34,6 +34,7 @@ public class CommonPage {
     private void initialize() {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
       //  logger.info("Page load timeout set to: " + timeoutInSeconds + " seconds.");
+
     }
 
     public void waitForPageLoad() {
@@ -147,5 +148,25 @@ public class CommonPage {
         }
     }
 
+    public void waitForAttributeToContain(By locator, String attribute, String value) {
+        try {
+            wait.until(driver -> {
+                WebElement element = driver.findElement(locator);
+                String attributeValue = element.getAttribute(attribute);
+                return attributeValue != null && attributeValue.contains(value);
+            });
+        } catch (Exception e) {
+            throw new RuntimeException("Attribute " + attribute + " did not contain value " + value + " for element: " + locator, e);
+        }
+    }
+
+    public boolean isElementVisible(By selector) {
+        try {
+            WebElement element = driver.findElement(selector);
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 
 }

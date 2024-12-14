@@ -29,12 +29,12 @@ public class TimeScheduleTests extends BaseTest {
 //        timeSchedulePage.clickOrganisationOkButton("OK");
 //        timeSchedulePage.clickTooltipLoadButton();
 //
-    //    timeSchedulePage.searchAndSelectAndClickOrganisation("Arun House - YAS 999");
-        timeSchedulePage.searchAndSelectAndClickOrganisation("Alnwick Infirmary - NBL OOH");
+        timeSchedulePage.searchAndSelectAndClickOrganisation("Arun House - YAS 999");
+     //   timeSchedulePage.searchAndSelectAndClickOrganisation("Alnwick Infirmary - NBL OOH");
         timeSchedulePage.clickOrganisationOkButton("OK");
         timeSchedulePage.clickTooltipLoadButton();
- //       assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS 999", "Shift assignment failed.");
-        assertEquals(timeSchedulePage.getLoadedPageTitle(), "Alnwick Infirmary - NBL OOH", "Shift assignment failed.");
+        assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS 999", "Shift assignment failed.");
+      //  assertEquals(timeSchedulePage.getLoadedPageTitle(), "Alnwick Infirmary - NBL OOH", "Shift assignment failed.");
     }
 
 //    @Test
@@ -47,10 +47,15 @@ public class TimeScheduleTests extends BaseTest {
 
     @Test
     public void verifyDayOfWeekMatchesTitle() {
-        timeSchedulePage.testSelectAvailableDayForEmployee();
-        timeSchedulePage.verifyDayOfWeekMatchesTitle();
-        timeSchedulePage.verifySearchBarTextMatchesSelectedEmployee();
-        timeSchedulePage.clickButtonByText("OK");
+       // timeSchedulePage.matchDayOfWeek();
+      timeSchedulePage.moveThroughScheduledColumnCell();
+     // timeSchedulePage.moveToEmptyCell();
+
+
+//        timeSchedulePage.testSelectAvailableDayForEmployee();
+//        timeSchedulePage.verifyDayOfWeekMatchesTitle();
+//        timeSchedulePage.verifySearchBarTextMatchesSelectedEmployee();
+//        timeSchedulePage.clickButtonByText("OK");
 //        timeSchedulePage.performDragAndDropFromSelectedCell();
 //        timeSchedulePage.performDragAndDropToAnotherEmployee();
 

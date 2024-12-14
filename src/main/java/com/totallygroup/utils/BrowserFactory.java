@@ -25,7 +25,7 @@ public class BrowserFactory {
                 throw new IllegalArgumentException("Unsupported browser: " + browser);
         }
 
-        driver.manage().window().maximize();  // Maximize the browser window
+        driver.manage().window().maximize();
         return driver;
     }
 

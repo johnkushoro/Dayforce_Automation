@@ -12,9 +12,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @PropertySource("classpath:application.yml")
 public class TestConfig {
 
-//    static {
-//        PropertyConfigurator.configure("src/test/resources/log4j.properties");
-//    }
 
     @Bean
     public WebDriver webDriver() {
