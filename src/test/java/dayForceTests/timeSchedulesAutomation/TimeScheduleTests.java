@@ -2,6 +2,7 @@ package dayForceTests.timeSchedulesAutomation;
 
 import com.totallygroup.pageObject.SideMenuItems;
 import com.totallygroup.pageObject.TimeSchedulesPage;
+import com.totallygroup.steps.TimeSchedulesPageSteps;
 import com.totallygroup.utils.DataStore;
 import dayForceTests.BaseTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class TimeScheduleTests extends BaseTest {
 
     @Autowired
     private TimeSchedulesPage timeSchedulePage;
+
+    @Autowired
+    private TimeSchedulesPageSteps timeSchedulesPageSteps;
 
     @Autowired
     private SideMenuItems sideMenuItems;
@@ -29,12 +33,13 @@ public class TimeScheduleTests extends BaseTest {
 //        timeSchedulePage.clickOrganisationOkButton("OK");
 //        timeSchedulePage.clickTooltipLoadButton();
 //
-        timeSchedulePage.searchAndSelectAndClickOrganisation("Arun House - YAS 999");
-     //   timeSchedulePage.searchAndSelectAndClickOrganisation("Alnwick Infirmary - NBL OOH");
+
+        timeSchedulesPageSteps.searchAndSelectOrganisation("Arun House - YAS 999");
+      //  timeSchedulesPageSteps.searchAndSelectOrganisation("Alnwick Infirmary - NBL OOH");
         timeSchedulePage.clickOrganisationOkButton("OK");
         timeSchedulePage.clickTooltipLoadButton();
         assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS 999", "Shift assignment failed.");
-      //  assertEquals(timeSchedulePage.getLoadedPageTitle(), "Alnwick Infirmary - NBL OOH", "Shift assignment failed.");
+     //   assertEquals(timeSchedulePage.getLoadedPageTitle(), "Alnwick Infirmary - NBL OOH", "Shift assignment failed.");
     }
 
 //    @Test
@@ -48,8 +53,9 @@ public class TimeScheduleTests extends BaseTest {
     @Test
     public void verifyDayOfWeekMatchesTitle() {
        // timeSchedulePage.matchDayOfWeek();
-      timeSchedulePage.moveThroughScheduledColumnCell();
+    //  timeSchedulePage.moveThroughScheduledColumnCell();
      // timeSchedulePage.moveToEmptyCell();
+        timeSchedulePage.matchDayOfWeekAndMoveThroughScheduledColumnCell();
 
 
 //        timeSchedulePage.testSelectAvailableDayForEmployee();

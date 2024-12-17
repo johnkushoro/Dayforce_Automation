@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@ComponentScan(basePackages = {"com.totallygroup.pageObject", "com.totallygroup.utils", "com.totallygroup.model"})
+@ComponentScan(basePackages = {"com.totallygroup.pageObject", "com.totallygroup.utils", "com.totallygroup.model", "com.totallygroup.steps"})
 @PropertySource("classpath:application.yml")
 public class TestConfig {
 

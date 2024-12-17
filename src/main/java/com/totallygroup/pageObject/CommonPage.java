@@ -138,6 +138,7 @@ public class CommonPage {
         }
     }
 
+
     public void waitForDOMToStabilize() {
         try {
             wait.until(driver -> Objects.equals(((JavascriptExecutor) driver)
@@ -168,5 +169,10 @@ public class CommonPage {
             return false;
         }
     }
+
+    public void clickUsingJavaScript(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
 
 }

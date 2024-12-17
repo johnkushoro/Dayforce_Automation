@@ -46,19 +46,32 @@ public class TimeSchedulesPage extends CommonPage {
     public static final String EMPLOYEE_LABEL_CLASS = "employeeLabel";
     public static final String SEARCH_BAR_BY_LABEL_XPATH = "//label[text()='%s']/parent::div//span[@class='k-searchbar']/input";
     public static final String BUTTON_BY_TEXT_XPATH = "//div[contains(@class, 'sc-jtHMlw')]//button[normalize-space(text())='%s']";
+    private static final String SHIFT_NAME_SELECTOR = "name";
+    private static final String EMPLOYEE_NAME_SELECTOR = "employeeLabel";
+    private static final String DAY_OF_WEEK_HEADER = ".defaultHeaderCell.headerCellFocus";
     private static final String COLUMN_CSS = "div.VirtualBackgroundCell.selectedBackground";
 
 
+
+
     private final DataStore dataStore;
+//    private final Actions actions;
+//    private final TimeSchedulesPageSteps timeSchedulesPageSteps;  // Inject Steps
 
     public TimeSchedulesPage(WebDriver driver, DataStore dataStore) {
         super(driver);
         this.dataStore = dataStore;
+//        this.actions = new Actions(driver);
+//        this.timeSchedulesPageSteps = timeSchedulesPageSteps;
     }
 
+
+
     public void clickLoadPaneToggle() {
-        waitForElementToBeVisibleAndClickable(By.cssSelector(LOAD_PANE_CSS)).click();
+        WebElement loadPaneToggle = waitForElementToBeVisibleAndClickable(By.cssSelector(LOAD_PANE_CSS));
+        loadPaneToggle.click();
     }
+
 
     public void clickOrgPicker() {
         click(By.cssSelector(ORG_PICKER_CSS));
@@ -103,28 +116,25 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
-    public void searchAndSelectAndClickOrganisation(String organisationText) {
-        WebElement searchField = waitForElementToBeVisible(By.cssSelector(ORGANISATION_SEARCH_FIELD_CSS));
-        searchField.sendKeys(organisationText);
 
-        WebElement highlightedOrganisation = waitForElementToBeVisible(By.cssSelector(HIGHLIGHTED_ORGANISATION_CSS));
-        if (highlightedOrganisation == null) {
-            logger.log(Level.WARNING, "No highlighted organisation found for: " + organisationText);
-            throw new NoSuchElementException("Organisation not found in search results.");
-        }
 
-        click(By.cssSelector(HIGHLIGHTED_ORGANISATION_CSS));
-        waitForElementsToNotBeVisible(By.cssSelector(HIGHLIGHTED_ORGANISATION_CSS));
-
-        WebElement selectedOrganisation = waitForElementToBeVisible(By.cssSelector(SELECTED_ORGANISATION_CSS));
-        String selectedOrganisationText = selectedOrganisation.getText();
-
-        if (!selectedOrganisationText.equals(organisationText)) {
-            throw new AssertionError("Selected organisation text does not match entered text. Expected: " + organisationText + ", Found: " + selectedOrganisationText);
-        }
-
-        logger.info("Verified selected organisation matches the entered text: " + organisationText);
+    public WebElement getOrganisationSearchField() {
+        return waitForElementToBeVisible(By.cssSelector(ORGANISATION_SEARCH_FIELD_CSS));
     }
+
+    public WebElement getHighlightedOrganisation() {
+        return waitForElementToBeVisible(By.cssSelector(HIGHLIGHTED_ORGANISATION_CSS));
+    }
+
+    public WebElement getSelectedOrganisation() {
+        return waitForElementToBeVisible(By.cssSelector(SELECTED_ORGANISATION_CSS));
+    }
+
+    public void clickOrganisation(WebElement organisation) {
+        organisation.click();
+    }
+
+
 
 
     public void clickOrganisationOkButton(String buttonText) {
@@ -420,49 +430,6 @@ public class TimeSchedulesPage extends CommonPage {
     }
 
 
-    public void clickContentAndSelectSchedule(String date, String employee) {
-        WebElement contentInner = driver.findElement(By.cssSelector("#content-cInner"));
-        contentInner.click();
-        WebElement columCell = driver.findElement(By.cssSelector("#content-cInner > div.SchedulerVirtualGridEditControls"));
-        columCell.click();
-        selectColumnCellForDateAndEmployee(date, employee);
-    }
-
-    public void selectColumnCellForDateAndEmployee(String date, String employee) {
-        WebElement dayOfWeekCell = driver.findElements(By.cssSelector(DAY_OF_WEEK_CSS))
-                .stream()
-                .filter(element -> element.getText().contains(date))
-                .findFirst()
-                .orElse(null);
-
-        if (dayOfWeekCell == null) {
-            System.out.println("Date not found: " + date);
-            return;
-        }
-
-        WebElement employeeCell = driver.findElements(By.cssSelector(EMPLOYEE_LIST_CSS))
-                .stream()
-                .filter(element -> element.getText().equalsIgnoreCase(employee))
-                .findFirst()
-                .orElse(null);
-
-        if (employeeCell == null) {
-            System.out.println("Employee not found: " + employee);
-            return;
-        }
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(dayOfWeekCell).perform();
-
-        WebElement column = driver.findElement(By.cssSelector(COLUMN_CSS));
-        column.click();
-
-        System.out.println("Selected Date: " + dayOfWeekCell.getText());
-        System.out.println("Selected Employee: " + employeeCell.getText());
-    }
-
-
-
     public void moveThroughAnnualLeaveColumnCell() {
         WebElement contentInner = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
         contentInner.click();
@@ -492,127 +459,54 @@ public class TimeSchedulesPage extends CommonPage {
 
 
 
-    public void moveToEmptyCell() {
-        WebElement contentInner = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
-        contentInner.click();
-
-        // WebElement emptyCells = waitForElementToBeVisible(By.cssSelector(EMPTY_CELL_CSS));
-        WebElement emptyCell = waitForElementToBeVisible(By.cssSelector("#content-cInner > div.VirtualBackgroundCell.selectedBackground.focusedBackground.SchedulerBackgroundCell"));
-
-        Actions actions = new Actions(driver);
-
-        actions.moveToElement(emptyCell).perform();
-        System.out.println("Moved to the empty cell");
-    }
 
 
 
-
-
-
-    public void matchDayOfWeek() {
-        WebElement scheduleBoard = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
-        scrollToElement(scheduleBoard);
-        scheduleBoard.click();
-
-        List<WebElement> scheduleCells = waitForElementsToBeVisible(By.cssSelector(".VirtualScheduleCell"));
-
-        Actions actions = new Actions(driver);
-
-        for (int i = 0; i < scheduleCells.size(); i++) {
-            WebElement currentCell = scheduleCells.get(i);
-            actions.moveToElement(currentCell).perform();
-            WebElement shiftNameElement = currentCell.findElement(By.className("name"));
-            System.out.println("Shift Name: " + shiftNameElement.getText());
-
-            String leftPosition = currentCell.getCssValue("left");
-
-            WebElement correspondingHeader = findHeaderByPosition(leftPosition);
-            if (correspondingHeader != null) {
-                String dayOfWeek = correspondingHeader.getText();
-                System.out.println("Day of the Week: " + dayOfWeek);
-            }
-
-            if (i + 1 < scheduleCells.size()) {
-                WebElement nextCell = scheduleCells.get(i + 1);
-                actions.clickAndHold(currentCell).moveToElement(nextCell).release().perform();
-            }
-        }
-    }
-
-    private WebElement findHeaderByPosition(String leftPosition) {
-        List<WebElement> headers = waitForElementsToBeVisible(By.cssSelector(".defaultHeaderCell.headerCellFocus"));
-
-        for (WebElement header : headers) {
-            String headerLeftPosition = header.getCssValue("left");
-            if (headerLeftPosition.equals(leftPosition)) {
-                return header;
-            }
-        }
-
-        return null;
-    }
-
-
-
-
-
-
-
-
-
-
-//    public void moveThroughScheduledColumnCell() {
-//        WebElement contentInner = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
-//        contentInner.click();
+//    public void matchDayOfWeek() {
+//        WebElement scheduleBoard = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
+//        scrollToElement(scheduleBoard);
+//        scheduleBoard.click();
 //
-//        List<WebElement> scheduledCells = waitForElementsToBeVisible(By.cssSelector(".VirtualScheduleCell"));
-//        List<WebElement> employeeCells = driver.findElements(By.cssSelector(".VirtualEmployeeCell"));
+//        List<WebElement> scheduleCells = waitForElementsToBeVisible(By.cssSelector(".VirtualScheduleCell"));
 //
 //        Actions actions = new Actions(driver);
 //
-//        for (int i = 0; i < scheduledCells.size(); i++) {
-//            WebElement column = scheduledCells.get(i);
-//            actions.moveToElement(column).perform();
-//            WebElement shiftName = column.findElement(By.className("name"));
-//            System.out.println("Shift Name: " + shiftName.getText());
+//        for (int i = 0; i < scheduleCells.size(); i++) {
+//            WebElement currentCell = scheduleCells.get(i);
+//            actions.moveToElement(currentCell).perform();
+//            WebElement shiftNameElement = currentCell.findElement(By.className("name"));
+//            System.out.println("Shift Name: " + shiftNameElement.getText());
 //
-//            // Get the top position of the current scheduled cell to identify the corresponding employee row
-//            String topPosition = column.getCssValue("top");
+//            String leftPosition = currentCell.getCssValue("left");
 //
-//            // Find the corresponding employee name based on the top position of the scheduled cell
-//            WebElement employeeCell = findEmployeeByTopPosition(topPosition);
-//            if (employeeCell != null) {
-//                String employeeName = employeeCell.findElement(By.className("employeeLabel")).getText();
-//                System.out.println("Employee Name: " + employeeName);
+//            WebElement correspondingHeader = findHeaderByPosition(leftPosition);
+//            if (correspondingHeader != null) {
+//                String dayOfWeek = correspondingHeader.getText();
+//                System.out.println("Day of the Week: " + dayOfWeek);
 //            }
 //
-//            if (i + 1 < scheduledCells.size()) {
-//                WebElement nextColumn = scheduledCells.get(i + 1);
-//                actions.clickAndHold(column).moveToElement(nextColumn).release().perform();
+//            if (i + 1 < scheduleCells.size()) {
+//                WebElement nextCell = scheduleCells.get(i + 1);
+//                actions.clickAndHold(currentCell).moveToElement(nextCell).release().perform();
 //            }
 //        }
 //    }
 //
-//    // Helper method to find the employee name based on the top position
-//    private WebElement findEmployeeByTopPosition(String topPosition) {
-//        // Locate the employee cells
-//        List<WebElement> employeeCells = driver.findElements(By.cssSelector(".VirtualEmployeeCell"));
+//    private WebElement findHeaderByPosition(String leftPosition) {
+//        List<WebElement> headers = waitForElementsToBeVisible(By.cssSelector(".defaultHeaderCell.headerCellFocus"));
 //
-//        // Return the employee with the exact top position that matches the scheduled cell
-//        for (WebElement employee : employeeCells) {
-//            String employeeTop = employee.getCssValue("top");
-//            if (employeeTop.equals(topPosition)) {
-//                return employee;  // Found the matching employee
+//        for (WebElement header : headers) {
+//            String headerLeftPosition = header.getCssValue("left");
+//            if (headerLeftPosition.equals(leftPosition)) {
+//                return header;
 //            }
 //        }
 //
 //        return null;
 //    }
-
-
-
-
+//
+//
+//
 //
 //    public void moveThroughScheduledColumnCell() {
 //        WebElement contentInner = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
@@ -620,14 +514,13 @@ public class TimeSchedulesPage extends CommonPage {
 //        contentInner.click();
 //
 //        List<WebElement> scheduledCells = waitForElementsToBeVisible(By.cssSelector(".VirtualScheduleCell"));
-//        List<WebElement> employeeCells = driver.findElements(By.cssSelector(".VirtualEmployeeCell"));
+//        List<WebElement> employeeCells = waitForElementsToBeVisible(By.cssSelector(".VirtualEmployeeCell"));
 //
 //        Actions actions = new Actions(driver);
+//        Set<WebElement> processedEmployees = new HashSet<>();
 //
 //        for (int i = 0; i < scheduledCells.size(); i++) {
 //            WebElement column = scheduledCells.get(i);
-//
-//            scrollToElement(column);
 //            actions.moveToElement(column).perform();
 //
 //            WebElement shiftName = column.findElement(By.className("name"));
@@ -635,10 +528,15 @@ public class TimeSchedulesPage extends CommonPage {
 //            String topPosition = column.getCssValue("top");
 //            String leftPosition = column.getCssValue("left");
 //
-//            WebElement employeeCell = findEmployeeByTopAndLeftPositionWithTolerance(topPosition, leftPosition);
-//            if (employeeCell != null) {
+//            waitForElementsToBeVisible(By.cssSelector(".VirtualEmployeeCell"));
+//
+//            WebElement employeeCell = findEmployeeByTopAndLeftPosition(topPosition, leftPosition, employeeCells, processedEmployees);
+//
+//            if (employeeCell != null && !processedEmployees.contains(employeeCell)) {
 //                String employeeName = employeeCell.findElement(By.className("employeeLabel")).getText();
-//                System.out.println(employeeName);
+//                System.out.println("Employee: " + employeeName + " | Shift: " + shiftName.getText());
+//
+//                processedEmployees.add(employeeCell);
 //            }
 //
 //            if (i + 1 < scheduledCells.size()) {
@@ -648,20 +546,22 @@ public class TimeSchedulesPage extends CommonPage {
 //        }
 //    }
 //
-//    private WebElement findEmployeeByTopAndLeftPositionWithTolerance(String topPosition, String leftPosition) {
-//        List<WebElement> employeeCells = driver.findElements(By.cssSelector(".VirtualEmployeeCell"));
-//
+//    private WebElement findEmployeeByTopAndLeftPosition(String topPosition, String leftPosition, List<WebElement> employeeCells, Set<WebElement> processedEmployees) {
 //        double targetTop = Double.parseDouble(topPosition.replace("px", ""));
 //        double targetLeft = Double.parseDouble(leftPosition.replace("px", ""));
-//        double tolerance = 10.0;
 //
 //        for (WebElement employee : employeeCells) {
+//            if (processedEmployees.contains(employee)) {
+//                continue;
+//            }
+//
 //            String employeeTop = employee.getCssValue("top").replace("px", "");
 //            String employeeLeft = employee.getCssValue("left").replace("px", "");
 //            double employeeTopValue = Double.parseDouble(employeeTop);
 //            double employeeLeftValue = Double.parseDouble(employeeLeft);
 //
-//            if (Math.abs(targetTop - employeeTopValue) <= tolerance && Math.abs(targetLeft - employeeLeftValue) <= tolerance) {
+//            // Direct comparison without tolerance
+//            if (targetTop == employeeTopValue && targetLeft == employeeLeftValue) {
 //                return employee;
 //            }
 //        }
@@ -674,55 +574,114 @@ public class TimeSchedulesPage extends CommonPage {
 
 
 
-    public void moveThroughScheduledColumnCell() {
-        WebElement contentInner = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
-        scrollToElement(contentInner);
-        contentInner.click();
 
-        List<WebElement> scheduledCells = waitForElementsToBeVisible(By.cssSelector(".VirtualScheduleCell"));
-        List<WebElement> employeeCells = driver.findElements(By.cssSelector(".VirtualEmployeeCell"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void matchDayOfWeekAndMoveThroughScheduledColumnCell() {
+        WebElement scheduleBoard = waitForElementToBeVisible(By.cssSelector(SHIFT_BOARD_CSS));
+        clickUsingJavaScript(scheduleBoard);
+
+        List<WebElement> scheduleCells = waitForElementsToBeVisible(By.cssSelector(SCHEDULED_CELL_LOCATOR));
+        List<WebElement> employeeCells = waitForElementsToBeVisible(By.cssSelector(EMPLOYEE_LIST_CSS));
+       // List<WebElement> annualLeaveCells = waitForElementsToBeVisible(By.cssSelector(CELL_WITH_ANNUAL_LEAVE_CSS));
 
         Actions actions = new Actions(driver);
-
-        // Track which employees have been matched
         Set<WebElement> processedEmployees = new HashSet<>();
 
-        for (int i = 0; i < scheduledCells.size(); i++) {
-            WebElement column = scheduledCells.get(i);
-            actions.moveToElement(column).perform();
+        for (int i = 0; i < scheduleCells.size(); i++) {
+            WebElement currentCell = scheduleCells.get(i);
+            actions.moveToElement(currentCell).perform();
 
-            WebElement shiftName = column.findElement(By.className("name"));
+            WebElement shiftNameElement = currentCell.findElement(By.className(SHIFT_NAME_SELECTOR));
+            logger.info("Shift Name: " + shiftNameElement.getText());
 
-            String topPosition = column.getCssValue("top");
-            String leftPosition = column.getCssValue("left");
+            String leftPosition = currentCell.getCssValue("left");
 
-            // Adding a wait to ensure that employee cells are fully loaded and interactable
-            waitForElementsToBeVisible(By.cssSelector(".VirtualEmployeeCell"));
-
-            WebElement employeeCell = findEmployeeByTopAndLeftPosition(topPosition, leftPosition, employeeCells, processedEmployees);
-
-            if (employeeCell != null && !processedEmployees.contains(employeeCell)) {
-                String employeeName = employeeCell.findElement(By.className("employeeLabel")).getText();
-                System.out.println("Employee: " + employeeName + " | Shift: " + shiftName.getText());
-
-                processedEmployees.add(employeeCell);
+            WebElement correspondingHeader = findHeaderByPosition(leftPosition);
+            if (correspondingHeader != null) {
+                String dayOfWeek = correspondingHeader.getText();
+                logger.info("Day of the Week: " + dayOfWeek);
             }
 
-            if (i + 1 < scheduledCells.size()) {
-                WebElement nextColumn = scheduledCells.get(i + 1);
-                actions.clickAndHold(column).moveToElement(nextColumn).release().perform();
+            String topPosition = currentCell.getCssValue("top");
+
+            WebElement employeeCell = findEmployeeByTopAndLeftPosition(topPosition, leftPosition, employeeCells, processedEmployees);
+            if (employeeCell != null && !processedEmployees.contains(employeeCell)) {
+                String employeeName = employeeCell.findElement(By.className(EMPLOYEE_NAME_SELECTOR)).getText();
+                logger.info("Employee: " + employeeName + " | Shift: " + shiftNameElement.getText());
+
+                processedEmployees.add(employeeCell);
+
+                break;
+            }
+
+            if (i + 1 < scheduleCells.size()) {
+                WebElement nextCell = scheduleCells.get(i + 1);
+                actions.clickAndHold(currentCell).moveToElement(nextCell).release().perform();
             }
         }
     }
 
 
+    private WebElement findHeaderByPosition(String leftPosition) {
+        List<WebElement> headers = waitForElementsToBeVisible(By.cssSelector(DAY_OF_WEEK_HEADER));
+        for (WebElement header : headers) {
+            String headerLeftPosition = header.getCssValue("left");
+            if (headerLeftPosition.equals(leftPosition)) {
+                return header;
+            }
+        }
+        return null;
+    }
+
     private WebElement findEmployeeByTopAndLeftPosition(String topPosition, String leftPosition, List<WebElement> employeeCells, Set<WebElement> processedEmployees) {
         double targetTop = Double.parseDouble(topPosition.replace("px", ""));
         double targetLeft = Double.parseDouble(leftPosition.replace("px", ""));
-        double tolerance = 10.0;
 
         for (WebElement employee : employeeCells) {
-            // Skip employees that have already been processed
             if (processedEmployees.contains(employee)) {
                 continue;
             }
@@ -732,14 +691,15 @@ public class TimeSchedulesPage extends CommonPage {
             double employeeTopValue = Double.parseDouble(employeeTop);
             double employeeLeftValue = Double.parseDouble(employeeLeft);
 
-            // If employee's top and left positions are close to the shift's position, we associate them
-            if (Math.abs(targetTop - employeeTopValue) <= tolerance && Math.abs(targetLeft - employeeLeftValue) <= tolerance) {
+
+            if (targetTop == employeeTopValue && targetLeft == employeeLeftValue) {
                 return employee;
             }
         }
 
         return null;
     }
+
 
 
 
