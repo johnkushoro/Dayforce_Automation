@@ -34,11 +34,11 @@ public class TimeScheduleTests extends BaseTest {
 //        timeSchedulePage.clickTooltipLoadButton();
 //
 
-        timeSchedulesPageSteps.searchAndSelectOrganisation("Arun House - YAS 999");
+        timeSchedulesPageSteps.searchAndSelectOrganisation("Arun House - YAS CAS");
       //  timeSchedulesPageSteps.searchAndSelectOrganisation("Alnwick Infirmary - NBL OOH");
         timeSchedulePage.clickOrganisationOkButton("OK");
         timeSchedulePage.clickTooltipLoadButton();
-        assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS 999", "Shift assignment failed.");
+        assertEquals(timeSchedulePage.getLoadedPageTitle(), "Arun House - YAS CAS", "Shift assignment failed.");
      //   assertEquals(timeSchedulePage.getLoadedPageTitle(), "Alnwick Infirmary - NBL OOH", "Shift assignment failed.");
     }
 
@@ -53,7 +53,7 @@ public class TimeScheduleTests extends BaseTest {
     @Test
     public void verifyDayOfWeekMatchesTitle() {
        // timeSchedulePage.matchDayOfWeek();
-    //  timeSchedulePage.moveThroughScheduledColumnCell();
+   //   timeSchedulePage.moveThroughScheduledColumnCell();
      // timeSchedulePage.moveToEmptyCell();
         timeSchedulePage.matchDayOfWeekAndMoveThroughScheduledColumnCell();
 
